@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivpratap Bishnoi — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F0E8;
+    --ink: #1a1612;
+    --accent: #C41E3A;
+    --mid: #6b6560;
+    --light: #c8c0b4;
+    --card: #EDE8DF;
+    --border: #D4CCC0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--mid);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,30,58,0.06) 0%, transparent 70%);
+  }
+
+  .hero-content { max-width: 800px; }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 1.0;
+    margin-bottom: 32px;
+    font-weight: 700;
+  }
+
+  .hero-line {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-style: italic;
+    color: var(--mid);
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  .hero-contact {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-contact a {
+    text-decoration: none;
+    color: var(--mid);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .hero-contact a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--light);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 120px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 8px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .about-text em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .about-text strong {
+    font-weight: 500;
+  }
+
+  /* DIVIDER */
+  .divider {
+    margin: 0 48px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* WORK SECTION */
+  .work {
+    padding: 120px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .work-header {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+
+  .work-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+  }
+
+  .work-sub {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  /* CARDS */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--accent);
+    transition: height 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+  }
+
+  .card:hover::before { height: 100%; }
+
+  .card.wide {
+    grid-column: span 2;
+  }
+
+  .card-brand {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 3px 8px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  .card-arrow {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    font-size: 20px;
+    color: var(--light);
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .card:hover .card-arrow {
+    color: var(--accent);
+    transform: translate(4px, -4px);
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,22,18,0.7);
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    overflow-y: auto;
+  }
+
+  .modal-overlay.active { display: block; }
+
+  .modal {
+    background: var(--bg);
+    max-width: 780px;
+    margin: 60px auto;
+    border-radius: 4px;
+    overflow: hidden;
+    animation: slideUp 0.4s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-header {
+    padding: 48px 56px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-brand {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .modal-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 3px 8px;
+    margin-bottom: 16px;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .modal-brief {
+    font-size: 14px;
+    color: var(--mid);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--mid);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: var(--card); }
+
+  .modal-body {
+    padding: 40px 56px 56px;
+  }
+
+  .modal-section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    margin-top: 36px;
+  }
+
+  .modal-section-label:first-child { margin-top: 0; }
+
+  .modal-p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .modal-dialogue {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    padding-left: 24px;
+    border-left: 2px solid var(--accent);
+    margin: 20px 0;
+    line-height: 1.7;
+  }
+
+  .modal-hindi {
+    font-size: 16px;
+    line-height: 2.0;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .modal-hindi-section {
+    margin-bottom: 24px;
+  }
+
+  .hindi-num {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .modal-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-style: italic;
+    color: var(--ink);
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .modal-brand-stamp {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 8px;
+  }
+
+  /* CAMPAIGN TABLE */
+  .campaign-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .campaign-item:last-child { border-bottom: none; }
+
+  .campaign-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .campaign-one-line {
+    font-size: 13px;
+    color: var(--accent);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 8px;
+  }
+
+  .campaign-detail {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  .campaign-summary {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--card);
+    border-left: 3px solid var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 64px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: var(--mid);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .about { padding: 80px 24px; grid-template-columns: 1fr; gap: 32px; }
+    .about-label { position: static; }
+    .work { padding: 80px 24px; }
+    .cards { grid-template-columns: 1fr; }
+    .card.wide { grid-column: span 1; }
+    .divider { margin: 0 24px; }
+    .modal { margin: 0; border-radius: 0; }
+    .modal-header { padding: 32px 28px 24px; }
+    .modal-body { padding: 28px 28px 48px; }
+    footer { padding: 40px 24px; flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .scroll-hint { left: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Shivpratap Bishnoi</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="mailto:shivpratapbishnoiapsite@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    
+    <h1 class="hero-name">Shivpratap<br>Bishnoi</h1>
+    <p class="hero-line">Culture speaks in patterns and registers in emotions. The social actor in me looks for those patterns and taps into the emotions.</p>
+    <div class="hero-contact">
+      <a href="mailto:shivpratapbishnoiapsite@gmail.com">shivpratapbishnoiapsite@gmail.com</a>
+      <a href="tel:+919587644529">+91 9587644529</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-label">About</div>
+  <div class="about-text">
+    <p>I've been noticing things my whole life without knowing there was a name for it. These three stories are the most honest answer I have to why that name might be advertising.</p>
+    <p>In 8th standard, I borrowed money from a friend and bought a <em>Cadbury Silk</em> for a girl. I wasn't really thinking about chocolate. I was following a script that Cadbury had already written — that in India, if you love someone, you give them a Silk. The ad had done its job so completely that I wasn't even aware it had done anything. I was just a boy with borrowed money, standing outside a classroom, holding purple packaging like it was a marriage proposal. <em>Tapping the right emotion is the backbone of any narrative.</em></p>
+    <p>"Darr ke aage jeet hai" was my wallpaper throughout UPSC preparation. Not because I'm a Mountain Dew loyalist but because fear is the one emotion that nobody escapes. Mountain Dew just found a way to sell a drink through it. Nike did it with laziness. Cadbury did it with love. <em>The product is almost incidental.</em></p>
+    <p>While conducting field research during the 2024 Lok Sabha elections, I realised the same behaviour applies to voters. Choosing a candidate is not very different from picking a packet of chips off a rack. Every option has a USP, but only the one that taps the right emotion gets picked.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-header">
+    <h2 class="work-title">Work</h2>
+    <span class="work-sub">Brief responses & ideas</span>
+  </div>
+
+  <div class="cards">
+
+    <div class="card" onclick="openModal('roff-contractor')">
+      <div class="card-brand">Roff — Pidilite</div>
+      <div class="card-tag">TVC Concept</div>
+      <div class="card-title">Cementia Jugaad</div>
+      <div class="card-desc">A labour who knows his craft stops a contractor from making the wrong call. Because reputation is on the line.</div>
+      <div class="card-arrow">↗</div>
+    </div>
+
+    <div class="card" onclick="openModal('colgate-chugaali')">
+      <div class="card-brand">Colgate</div>
+      <div class="card-tag">TVC Concept</div>
+      <div class="card-title">Chugaali</div>
+      <div class="card-desc">A different direction. Shorter. Funnier. The buffalo doesn't care. You should.</div>
+      <div class="card-arrow">↗</div>
+    </div>
+
+    <div class="card wide" onclick="openModal('muscleblaze-reading')">
+      <div class="card-brand">MuscleBlaze</div>
+      <div class="card-tag">Brand Reading</div>
+      <div class="card-title">Breaking Four Campaigns</div>
+      <div class="card-desc">Before writing for a brand, understand what it has already said. Four campaigns. One through-line.</div>
+      <div class="card-arrow">↗</div>
+    </div>
+
+    <div class="card wide" onclick="openModal('muscleblaze-sanak')">
+      <div class="card-brand">MuscleBlaze</div>
+      <div class="card-tag">Voiceover Concept</div>
+      <div class="card-title">Sanak</div>
+      <div class="card-desc">For everyone who once burned for something and then slowly stopped. The bar is sanak. Everything below it is a choice you are making right now.</div>
+      <div class="card-arrow">↗</div>
+    </div>
+
+    <div class="card" onclick="openModal('colgate-acchi')">
+      <div class="card-brand">Colgate</div>
+      <div class="card-tag">TVC Concept</div>
+      <div class="card-title">Acchi Aadate</div>
+      <div class="card-desc">A gentle reminder to brush at night. A mother's quiet act of love that travels further than she knows.</div>
+      <div class="card-arrow">↗</div>
+    </div>
+
+    <div class="card" onclick="openModal('roff')">
+      <div class="card-brand">Roff — Pidilite</div>
+      <div class="card-tag">TVC Concept</div>
+      <div class="card-title">Sahi Chunaav</div>
+      <div class="card-desc">The obvious choice is not always the right choice. The right choice is the one with the right character.</div>
+      <div class="card-arrow">↗</div>
+    </div>
+
+    <div class="card wide" onclick="openModal('lpg')">
+      <div class="card-brand">Unsolicited</div>
+      <div class="card-tag">Film Concept</div>
+      <div class="card-title">Cooking Fuel</div>
+      <div class="card-desc">When you disturb one thing under a broader system, the domino effect lands somewhere you never expected.</div>
+      <div class="card-arrow">↗</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <div class="footer-name">Shivpratap Bishnoi</div>
+  <div class="footer-links">
+    <a href="mailto:shivpratapbishnoiapsite@gmail.com">shivpratapbishnoiapsite@gmail.com</a>
+    <a href="tel:+919587644529">+91 9587644529</a>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header">
+      <div class="modal-brand" id="m-brand"></div>
+      <div class="modal-tag" id="m-tag"></div>
+      <div class="modal-title" id="m-title"></div>
+      <div class="modal-brief" id="m-brief"></div>
+    </div>
+    <div class="modal-body" id="m-body"></div>
+  </div>
+</div>
+
+<script>
+const content = {
+
+'muscleblaze-reading': {
+  brand: 'MuscleBlaze',
+  tag: 'Brand Reading',
+  title: 'Breaking Four Campaigns',
+  brief: 'Before writing for a brand, understand what it has already said.',
+  body: `
+    <div class="campaign-item">
+      <div class="campaign-name">Tum Nahi Samjhoge</div>
+      <div class="campaign-one-line">Identifying the tribe that has discipline, reminding the rest they lack it.</div>
+      <div class="campaign-detail">The brand is recognising people who are disciplined and calling it their tribe. At the same time it is a wake up call to those doing physical exercise but lacking discipline. A celebration for the tribe and a mirror for everyone else.</div>
+    </div>
+    <div class="campaign-item">
+      <div class="campaign-name">Ziddi Hoon Main</div>
+      <div class="campaign-one-line">The tribe has clarity about why they do it. That clarity makes them unapologetic.</div>
+      <div class="campaign-detail">This moves past discipline. It is about putting in efforts and being unbowed, non-explanatory. The zag: an old father still working out, a mother training while her daughter studies, someone with a perfect body still pushing. You don't stop when you are old. You don't stop when you have arrived.</div>
+    </div>
+    <div class="campaign-item">
+      <div class="campaign-name">Naam Hai Ziddi</div>
+      <div class="campaign-one-line">People in extreme situations having every reason to quit, still showing up. Questioning those with no reason to stop who still stop.</div>
+      <div class="campaign-detail">Three examples, three specific guilt deliveries. The bodybuilder running a pan shop — guilt to the privileged. The trans man with complete clarity about who he wants to become — guilt to the indecisive. The person attempting transformation for the third time — guilt to the inconsistent. Both a celebration and an indictment in the same film.</div>
+    </div>
+    <div class="campaign-item">
+      <div class="campaign-name">Answer the Call</div>
+      <div class="campaign-one-line">Go back to why you started. That reason is what recovers you fastest.</div>
+      <div class="campaign-detail">The campaign explains why Zidd matters by showing where it came from. Three people, three origin stories. The product — Biozyme Whey, faster recovery — becomes the physical proof of the mental quality. The reason you started is your fastest recovery mechanism.</div>
+    </div>
+    <div class="campaign-summary">MuscleBlaze found the disciplined as their tribe and named them Ziddi, proved no excuse is valid, and showed that the reason you started is the same reason you never stop.</div>
+  `
+},
+
+'muscleblaze-sanak': {
+  brand: 'MuscleBlaze',
+  tag: 'Voiceover Concept',
+  title: 'Sanak',
+  brief: 'The D day that never exists because every day already was.',
+  body: `
+    <div class="modal-section-label">The Idea</div>
+    <p class="modal-p">Every MuscleBlaze campaign so far lives in the journey — the training, the struggle, the private world of discipline. None of them have gone to the moment of performance itself. The D day. This campaign lives there. And its argument is: for this person, the D day does not exist as something special. Every day was already the D day.</p>
+
+    <div class="modal-section-label">The Voiceover</div>
+
+    <div class="modal-hindi-section">
+      <div class="hindi-num">I.</div>
+      <div class="modal-hindi">सनकी, सरफ़िरे, जुनूनी — कई नाम हैं इनके,</div>
+      <div class="modal-hindi">क्योंकि कमज़ोर कहलाना इन्हें मंज़ूर नहीं।</div>
+      <div class="modal-hindi">मंज़ूर भी कैसे हो</div>
+      <div class="modal-hindi">वो उम्र से बड़ा हौसला जो ठहरा</div>
+      <div class="modal-hindi">जो देता है सनक इन्हें रोज़ खुद से भिड़ जाने की,</div>
+      <div class="modal-hindi">खुद को तपाने की,</div>
+      <div class="modal-hindi">हर बाज़ी खुद को बेहतर बनाने की।</div>
+    </div>
+
+    <div class="modal-hindi-section">
+      <div class="hindi-num">II.</div>
+      <div class="modal-hindi">कैसे हो महसूस और कैसे ही आए नज़र</div>
+      <div class="modal-hindi">बिना परखे, बिना झांके खुद के भीतर</div>
+      <div class="modal-hindi">वो शून्य का सन्नाटा, वो एकांत में पनपती सनक</div>
+      <div class="modal-hindi">जो कह रही है तुमसे —</div>
+      <div class="modal-hindi">वो ओढ़ अनगिनत घावों की ढालों को</div>
+      <div class="modal-hindi">और देख उन ललकारों भरी नज़रों से उन खौफ़ खाती चुनौतियों को</div>
+      <div class="modal-hindi">और चबा डालो उन लोहे की खुराकों को।</div>
+    </div>
+
+    <div class="modal-hindi-section">
+      <div class="hindi-num">III.</div>
+      <div class="modal-hindi">इन मुश्किलों की आहट और सिसकियों की गर्माहट से</div>
+      <div class="modal-hindi">पूछने लगी हैं अब भीतर की उफनती लहरें</div>
+      <div class="modal-hindi">कब लगेगी वो खुद से होड़</div>
+      <div class="modal-hindi">जो देगी हर बंदिश को तोड़</div>
+      <div class="modal-hindi">तो उठ, बना रास्ता — अब खुद से नाता जोड़।</div>
+    </div>
+
+    <div class="modal-hindi-section">
+      <div class="hindi-num">IV.</div>
+      <div class="modal-hindi">सूख चुका ये औसत दर्जे का जीवन,</div>
+      <div class="modal-hindi">लगा रहा बस एक गुहार — बरस अब मेरे अपने भीतर,</div>
+      <div class="modal-hindi">सुलगा दे अब एक ऐसी आग</div>
+      <div class="modal-hindi">कि टूट सके ये ठहरा सा दौर।</div>
+      <div class="modal-hindi">कर दे राख इन आधे-अधूरे ख़्वाबों के निशान,</div>
+      <div class="modal-hindi">या तो बनाऊँ मैं खुद की पहचान</div>
+      <div class="modal-hindi">या मिट जाऊँ लड़ते-लड़ते इस सनक के नाम।</div>
+    </div>
+
+    <div class="modal-tagline">भाग मत. Accept kar. Train kar.</div>
+    <div class="modal-brand-stamp">MUSCLEBLAZE</div>
+  `
+},
+
+'roff': {
+  brand: 'Roff — Pidilite',
+  tag: 'TVC Concept',
+  title: 'Sahi Chunaav',
+  brief: 'The obvious choice is not always the right choice.',
+  body: `
+    <div class="modal-section-label">The Insight</div>
+    <p class="modal-p">Cement is not wrong. It is just being used where it does not belong. The mason uses cement on every tile without asking if it is right for this surface. The school uses the same label on every difficult child without asking if it is the right reading. Roff's brand truth — different surfaces need different treatment — is the same truth as: different people need different eyes.</p>
+
+    <div class="modal-section-label">The Script</div>
+
+    <p class="modal-p"><strong>Scene 1.</strong> Headboy nominations are up on the noticeboard. A group of candidates' names listed. The school's most notorious student stands in front of it. Other boys smirk. His name is not on the board.</p>
+
+    <p class="modal-p"><strong>Scene 2.</strong> His name gets called. Summoned to the principal's office. Class teacher's face — exhausted and familiar. Students unsurprised. Class teacher as he leaves: <em>"Suno. Uniform theek karke jaana."</em></p>
+
+    <p class="modal-p"><strong>Scene 3.</strong> Mason outside the washroom. Earphones in. Cheerfully fixing a tile with cement. Completely in his own world. Boy enters. Closes the door. Tile falls. Boy checks — mason heard nothing. Nobody saw. He could walk away.</p>
+
+    <p class="modal-p"><strong>Scene 4.</strong> Boy enters the principal's office. She is in authoritative mode. Basketball team. Interschool. Parents not at PTM. She wants his parents. He says sorry. She says she does not want sorry, she wants his parents. Then —</p>
+    <div class="modal-dialogue">"Sorry... washroom mein tile toot gayi."</div>
+    <p class="modal-p">Her face shifts. She sends him back to class. No punishment.</p>
+
+    <p class="modal-p"><strong>Scene 5.</strong> Mason at the door. Slightly exasperated, funny face.</p>
+    <div class="modal-dialogue">"Ek aur gayee. Madam pichle ek hafte se tilon pe tile chipka raha hoon. Ab aur kitni baar?"</div>
+
+    <p class="modal-p"><strong>Scene 6.</strong> Boy has already left. Principal looks at the door he walked through. Small smile.</p>
+    <div class="modal-dialogue">"Hit and trial nahi chahiye, Manoj. Sahi chunaav ho gaya."</div>
+
+    <div class="modal-tagline">Sahi chunaav, pehli baar.</div>
+    <div class="modal-brand-stamp">ROFF</div>
+  `
+},
+
+'colgate-acchi': {
+  brand: 'Colgate',
+  tag: 'TVC Concept',
+  title: 'Acchi Aadate',
+  brief: 'A gentle reminder to brush at night.',
+  body: `
+    <div class="modal-section-label">Scene 1 — Bus Stop</div>
+    <p class="modal-p">A girl from a small town leaves for hostel. She is emotional, teary, gham-sum at the bus stop — too overwhelmed to notice her mother quietly slipping something into the back pocket of her bag from behind. The camera does not show what it is. Just a mother's hand. A very quiet, slow zip closing.</p>
+    <p class="modal-p">The mother, with a strong face, looks at the back of her daughter's head.</p>
+    <div class="modal-dialogue">"Hostel jaake achi aadate mat bhulna."</div>
+    <p class="modal-p">The girl nods. She is somewhere else, not in the moment.</p>
+
+    <div class="modal-section-label">Scene 2 — Hostel, First Night</div>
+    <p class="modal-p">First night at the hostel. Everything is alien — different atmosphere, different sounds, different light, different smell. One bag lying on the floor, one on the bed, half-zipped. She sits on the bed, still in the same clothes. Exhausted and overwhelmed.</p>
+    <p class="modal-p">She looks at the bags, realising the pain of unpacking. Then she looks at the bed, sensing comfort.</p>
+    <p class="modal-p">She is tempted to choose bed and sleep over the pain of unpacking. She leans back.</p>
+    <p class="modal-p">As she does, the half-open bag is brushed by her elbow and falls. A tube of Colgate rolls out quietly onto the floor.</p>
+    <p class="modal-p">She stares at it. Then her mother's voice, in her memory:</p>
+    <div class="modal-dialogue">"Hostel jaake achi aadate mat bhulna."</div>
+    <p class="modal-p">She now realises what was slipped into her bag at the bus stop while she was too emotional to notice. Understanding that her mother knew this exact moment would come before she did.</p>
+    <p class="modal-p">She reaches down. Picks it up. Gets up from the bed. The effort is real and visible on her face. But she has already decided.</p>
+
+    <div class="modal-section-label">Scene 3 — Shared Bathroom</div>
+    <p class="modal-p">She walks to the shared bathroom. Another girl is already in front of the mirror. Coming from a different background, visible in her clothes, her worn chappals. Same first hostel night written on her face.</p>
+    <p class="modal-p">Same Colgate pack in her hand.</p>
+    <p class="modal-p">They look at each other in the mirror. No words. Just recognition. Then both of them smile — big, genuine, slightly exhausted, yet relieved to see each other.</p>
+    <p class="modal-p">Two girls. Two mothers. The same quiet act of love, packed into a bag without making a show of it.</p>
+
+    <div class="modal-tagline">Jagah nayee. Aadat wahi.</div>
+    <div class="modal-brand-stamp">COLGATE</div>
+  `
+},
+
+'colgate-chugaali': {
+  brand: 'Colgate',
+  tag: 'TVC Concept',
+  title: 'Chugaali',
+  brief: 'A nudge to brush at night.',
+  body: `
+    <div class="modal-section-label">Scene 1</div>
+    <p class="modal-p">Quiet bedroom. Night. Soft moonlight.</p>
+    <p class="modal-p">A man sleeping. Happy face. Mouth slightly moving, unconsciously sucking and enjoying paalak stuck in his teeth.</p>
+
+    <div class="modal-section-label">Scene 2</div>
+    <p class="modal-p">A buffalo. Same energy. Calm. Unbothered. Chewing slowly. Green paalak visible. Does not care about anything around him.</p>
+
+    <div class="modal-section-label">Voiceover</div>
+    <div class="modal-dialogue">"Raat mein chugaali sirf bhains ko suit karti hai, insaano ko nahi."</div>
+
+    <div class="modal-section-label">Scene 3</div>
+    <p class="modal-p">Colgate at a night sink. Clean. Minimal. Buffalo still chewing somewhere, unbothered.</p>
+    <p class="modal-p">Crickets. Night insects. Buffalo still chewing. Unbothered.</p>
+
+    <div class="modal-tagline">Raat ko brush karo.</div>
+    <div class="modal-brand-stamp">COLGATE</div>
+  `
+},
+
+'roff-contractor': {
+  brand: 'Roff — Pidilite',
+  tag: 'TVC Concept',
+  title: 'Cementia Jugaad',
+  brief: 'A skilled labour protects his reputation by insisting on the right material.',
+  body: `
+    <div class="modal-section-label">The Insight</div>
+    <p class="modal-p">Cement became the default for fixing tiles not because it is right, but because there was no alternative. A skilled labour knows cement is as absurd as using aata or daliya for tiles. Roff is the only tool made specifically for this job. When a labour insists on Roff, he is protecting his reputation and his livelihood.</p>
+
+    <div class="modal-section-label">The Script</div>
+
+    <p class="modal-p"><strong>Contractor</strong> (on phone): <em>"Tile chipkane k liye cement bhijwa do."</em></p>
+    <p class="modal-p"><strong>Labour</strong> (steps forward, stops him): <em>"Sir, rukiye."</em></p>
+    <p class="modal-p"><strong>Contractor</strong> (confused, covers phone): <em>"Kya hua?"</em></p>
+    <p class="modal-p"><strong>Labour</strong>: <em>"Cement se tile chipkayenge sir, daliye sey nahi?"</em></p>
+    <p class="modal-p"><strong>Contractor</strong>: <em>"KYA?"</em></p>
+    <p class="modal-p"><strong>Labour</strong>: <em>"Accha chalo batao aata kaisa rahega?"</em></p>
+    <p class="modal-p"><strong>Contractor</strong> (annoyed): <em>"Pagal ho gaye ho kya?"</em></p>
+    <p class="modal-p"><strong>Labour</strong>: <em>"Acha aata nahi, fir geele chawal, basmati kaisa rahega?"</em></p>
+    <p class="modal-p"><strong>Contractor</strong>: <em>"Band karo ye bakwas."</em></p>
+    <p class="modal-p"><strong>Labour</strong> (pause, looks at him): <em>"Sir, agar formality hi karni ho toh ye options bhi utney hi juggadu hai jitna ki cement."</em></p>
+    <p class="modal-p"><strong>Contractor</strong>: <em>"Tum batao fir, cement se mazboot kya hai?"</em></p>
+    <p class="modal-p"><strong>Labour</strong>: <em>"Magar ki jakad sir. Pidilite Roff."</em></p>
+    <p class="modal-p"><strong>Contractor</strong> (realizes, back on phone): <em>"Cancel karo cement. Roff bhijwa do."</em></p>
+
+    <div class="modal-tagline">Tile ke liye sirf Roff. Koi Cementia jugaad nahi.</div>
+    <div class="modal-brand-stamp">ROFF</div>
+  `
+},
+
+'lpg': {
+  brand: 'Unsolicited',
+  tag: 'Film Concept',
+  title: 'Cooking Fuel',
+  brief: 'When you disturb one thing under a broader system, the domino effect lands somewhere you never expected.',
+  body: `
+    <div class="modal-section-label">The Idea</div>
+    <p class="modal-p">Not the way this subject usually gets handled. No data, no government angle, no deprivation narrative. Just a small story about a mother's promise to her daughter that a large, invisible system made impossible to keep.</p>
+
+    <div class="modal-section-label">The Film</div>
+    <p class="modal-p">A girl in a hilly village asks her mother to cook her favourite dish. The mother agrees and sends her to collect firewood. The girl comes back with the best wood, keeps it outside, and joins her working mother in the fields.</p>
+    <p class="modal-p">When they return, the firewood is gone.</p>
+    <p class="modal-p">Through the film, a radio plays in the background — twice before they leave the house, once when they return. Two different news items at different points: first, a theft warning in the area and second, cooking fuel shortage worldwide. Nothing is connected for the audience. Nothing is explained. They piece it together themselves when the firewood is gone.</p>
+    <p class="modal-p">The firewood is a metaphor for cooking fuel itself — its scarcity, its vulnerability. The radio is not an explanation. It is the sound of the world this family lives in.</p>
+
+    <div class="modal-tagline">"Kai baar badi duniya ki choti khabar,<br>choti duniya ki badi takleef ban jaati hai."</div>
+  `
+}
+
+};
+
+function openModal(id) {
+  const d = content[id];
+  document.getElementById('m-brand').textContent = d.brand;
+  document.getElementById('m-tag').textContent = d.tag;
+  document.getElementById('m-title').textContent = d.title;
+  document.getElementById('m-brief').textContent = d.brief;
+  document.getElementById('m-body').innerHTML = d.body;
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  window.scrollTo(0,0);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
