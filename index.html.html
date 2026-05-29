@@ -3,104 +3,470 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shivpratap Bishnoi — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Shivpratap Bishnoi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #F5F0E8;
-    --ink: #1a1612;
-    --accent: #C41E3A;
-    --mid: #6b6560;
-    --light: #c8c0b4;
-    --card: #EDE8DF;
-    --border: #D4CCC0;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; min-height: 100vh; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(245,240,232,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
-  .nav-name { font-family: 'Playfair Display', serif; font-size: 18px; letter-spacing: 0.02em; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a { text-decoration: none; color: var(--mid); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--accent); }
-  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(196,30,58,0.06) 0%, transparent 70%); }
-  .hero-content { max-width: 800px; }
-  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(52px, 8vw, 96px); line-height: 1.0; margin-bottom: 32px; font-weight: 700; }
-  .hero-line { font-family: 'Playfair Display', serif; font-size: clamp(16px, 2vw, 22px); font-style: italic; color: var(--mid); line-height: 1.6; max-width: 600px; margin-bottom: 48px; }
-  .hero-contact { display: flex; gap: 32px; flex-wrap: wrap; }
-  .hero-contact a { text-decoration: none; color: var(--mid); font-size: 13px; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
-  .hero-contact a:hover { color: var(--accent); border-color: var(--accent); }
-  .about { padding: 120px 48px; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
-  .about-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); padding-top: 8px; position: sticky; top: 100px; }
-  .about-text p { font-size: 16px; line-height: 1.85; color: var(--ink); margin-bottom: 24px; }
-  .about-text em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--accent); }
-  .about-text strong { font-weight: 500; }
-  .divider { margin: 0 48px; height: 1px; background: var(--border); }
-  .work { padding: 120px 48px; max-width: 1100px; margin: 0 auto; }
-  .work-header { display: flex; align-items: baseline; gap: 24px; margin-bottom: 64px; }
-  .work-title { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; }
-  .work-sub { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
-  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 40px; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s; position: relative; overflow: hidden; }
-  .card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--accent); transition: height 0.3s ease; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); border-color: var(--accent); }
-  .card:hover::before { height: 100%; }
-  .card.wide { grid-column: span 2; }
-  .card-brand { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .card-tag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); background: var(--bg); border: 1px solid var(--border); border-radius: 2px; padding: 3px 8px; margin-bottom: 16px; }
-  .card-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
-  .card-desc { font-size: 14px; line-height: 1.7; color: var(--mid); }
-  .card-arrow { position: absolute; bottom: 32px; right: 32px; font-size: 20px; color: var(--light); transition: color 0.2s, transform 0.2s; }
-  .card:hover .card-arrow { color: var(--accent); transform: translate(4px, -4px); }
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,22,18,0.7); z-index: 1000; backdrop-filter: blur(4px); overflow-y: auto; }
-  .modal-overlay.active { display: block; }
-  .modal { background: var(--bg); max-width: 780px; margin: 60px auto; border-radius: 4px; overflow: hidden; animation: slideUp 0.4s ease; }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  .modal-header { padding: 48px 56px 32px; border-bottom: 1px solid var(--border); }
-  .modal-brand { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-  .modal-tag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); background: var(--card); border: 1px solid var(--border); border-radius: 2px; padding: 3px 8px; margin-bottom: 16px; }
-  .modal-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
-  .modal-brief { font-size: 14px; color: var(--mid); font-style: italic; font-family: 'Playfair Display', serif; }
-  .modal-close { position: absolute; top: 24px; right: 24px; background: none; border: none; cursor: pointer; font-size: 24px; color: var(--mid); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; }
-  .modal-close:hover { background: var(--card); }
-  .modal-body { padding: 40px 56px 56px; }
-  .modal-section-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; margin-top: 36px; }
-  .modal-section-label:first-child { margin-top: 0; }
-  .modal-p { font-size: 15px; line-height: 1.85; color: var(--ink); margin-bottom: 16px; }
-  .modal-dialogue { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: var(--ink); padding-left: 24px; border-left: 2px solid var(--accent); margin: 20px 0; line-height: 1.7; }
-  .modal-commentary { font-size: 14px; color: var(--mid); font-style: italic; padding-left: 24px; margin: 12px 0; line-height: 1.6; }
-  .modal-hindi { font-size: 16px; line-height: 2.0; color: var(--ink); margin-bottom: 8px; }
-  .modal-hindi-section { margin-bottom: 24px; }
-  .hindi-num { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-  .modal-tagline { font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; color: var(--ink); margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
-  .modal-brand-stamp { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-top: 8px; }
-  .campaign-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
-  .campaign-item:last-child { border-bottom: none; }
-  .campaign-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
-  .campaign-one-line { font-size: 13px; color: var(--accent); font-style: italic; font-family: 'Playfair Display', serif; margin-bottom: 8px; }
-  .campaign-detail { font-size: 14px; line-height: 1.7; color: var(--mid); }
-  .campaign-summary { margin-top: 32px; padding: 24px; background: var(--card); border-left: 3px solid var(--accent); font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; line-height: 1.75; color: var(--ink); }
-  footer { padding: 64px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-name { font-family: 'Playfair Display', serif; font-size: 20px; }
-  .footer-links { display: flex; gap: 32px; }
-  .footer-links a { text-decoration: none; color: var(--mid); font-size: 13px; letter-spacing: 0.05em; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--accent); }
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    .hero { padding: 100px 24px 60px; }
-    .about { padding: 80px 24px; grid-template-columns: 1fr; gap: 32px; }
-    .about-label { position: static; }
-    .work { padding: 80px 24px; }
-    .cards { grid-template-columns: 1fr; }
-    .card.wide { grid-column: span 1; }
-    .divider { margin: 0 24px; }
-    .modal { margin: 0; border-radius: 0; }
-    .modal-header { padding: 32px 28px 24px; }
-    .modal-body { padding: 28px 28px 48px; }
-    footer { padding: 40px 24px; flex-direction: column; gap: 24px; text-align: center; }
-    .footer-links { flex-wrap: wrap; justify-content: center; }
-  }
+:root {
+  --bg: #111009;
+  --bg2: #161410;
+  --bg3: #1c1a16;
+  --ink: #e8e4dc;
+  --ink2: #a09890;
+  --ink3: #5a5450;
+  --red: #c8372a;
+  --gold: #b8962a;
+  --mb-red: #d4180e;
+  --mb-dark: #0e0c0c;
+  --zepto-purple: #5a2598;
+  --zepto-yellow: #f5c800;
+  --upi-navy: #162244;
+  --upi-gold: #b8962a;
+  --border: rgba(255,255,255,0.07);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 18px 52px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(17,16,9,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; letter-spacing: 0.04em;
+  color: var(--ink2);
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink3); text-decoration: none;
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 52px 88px;
+  position: relative; overflow: hidden;
+}
+.hero-grain {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+.hero-line-decor {
+  position: absolute; top: 0; left: 52px;
+  width: 1px; height: 40vh;
+  background: linear-gradient(to bottom, transparent, var(--border));
+}
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 10vw, 128px);
+  font-weight: 300; line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 40px;
+}
+.hero-name span { display: block; }
+.hero-name em {
+  font-style: italic;
+  color: var(--ink2);
+}
+.hero-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(17px, 2vw, 22px);
+  font-style: italic; font-weight: 300;
+  color: var(--ink2); line-height: 1.65;
+  max-width: 560px; margin-bottom: 52px;
+}
+.hero-contact { display: flex; gap: 36px; flex-wrap: wrap; }
+.hero-contact a {
+  font-size: 12px; letter-spacing: 0.08em;
+  color: var(--ink3); text-decoration: none;
+  border-bottom: 1px solid var(--ink3);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-contact a:hover { color: var(--ink); border-color: var(--ink); }
+
+/* SECTION UTILITY */
+.section-num {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 14px;
+}
+
+/* DIVIDER */
+.thin-rule { height: 1px; background: var(--border); }
+
+/* ABOUT */
+#about {
+  padding: 120px 52px;
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 80px; align-items: start;
+  max-width: 1200px; margin: 0 auto;
+}
+.about-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink3); position: sticky; top: 100px;
+  padding-top: 6px;
+}
+.about-text p {
+  font-size: 16px; line-height: 1.9;
+  color: var(--ink2); margin-bottom: 28px;
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-text em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--red); }
+.about-text strong { font-weight: 500; color: var(--ink); }
+
+/* WORK NAV */
+.work-nav {
+  padding: 60px 52px 40px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.work-nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.work-nav a {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink3); text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.work-nav a:hover { color: var(--ink); border-color: var(--ink3); }
+
+/* SPEC SECTION BASE */
+.spec {
+  padding: 140px 52px 120px;
+  position: relative; overflow: hidden;
+  border-top: 1px solid var(--border);
+}
+.spec-inner { max-width: 1200px; margin: 0 auto; }
+
+/* SPEC HEADER */
+.spec-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-bottom: 2px;
+}
+.spec-title-block {
+  padding: 64px; display: flex;
+  flex-direction: column; justify-content: flex-end;
+  min-height: 420px;
+}
+.spec-brand-tag {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 28px; opacity: 0.5;
+}
+.spec-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 600; line-height: 1.0;
+  margin-bottom: 20px;
+}
+.spec-brief {
+  font-size: 14px; line-height: 1.75;
+  color: var(--ink2); max-width: 420px;
+}
+.spec-insight-block {
+  padding: 64px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 420px;
+  background: rgba(255,255,255,0.03);
+}
+.spec-insight-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 20px; opacity: 0.4;
+}
+.spec-insight-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-style: italic; line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.spec-insight-body {
+  font-size: 14px; line-height: 1.8;
+  color: var(--ink2);
+}
+.spec-insight-body p + p { margin-top: 12px; }
+
+/* TAGS */
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.tag {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 5px 12px; border: 1px solid currentColor;
+  border-radius: 2px; opacity: 0.5;
+}
+
+/* SCRIPT BLOCK */
+.script-block { padding: 64px 0; }
+.script-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 40px;
+}
+.scene-grid { display: grid; grid-template-columns: 100px 1fr; gap: 0; }
+.scene-marker {
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink3); padding: 20px 0; border-top: 1px solid var(--border);
+}
+.scene-text {
+  font-size: 15px; line-height: 1.85;
+  color: var(--ink2); padding: 18px 0 18px 32px;
+  border-top: 1px solid var(--border);
+}
+.scene-text em { font-style: italic; color: var(--ink); }
+.scene-text strong { font-weight: 500; color: var(--ink); }
+.commentary {
+  display: inline-block;
+  font-size: 13px; font-style: italic;
+  color: var(--ink3); margin: 4px 0;
+}
+
+/* WHY BLOCK */
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 2px;
+}
+.why-card { padding: 48px; background: rgba(255,255,255,0.02); }
+.why-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300;
+  color: var(--ink3); margin-bottom: 20px; display: block;
+}
+.why-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  margin-bottom: 16px; color: var(--ink);
+}
+.why-text { font-size: 14px; line-height: 1.8; color: var(--ink2); }
+
+/* TAGLINE CLOSE */
+.spec-close {
+  padding: 64px;
+  background: rgba(255,255,255,0.02);
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-top: 2px;
+}
+.spec-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-style: italic; font-weight: 300;
+  color: var(--ink);
+}
+.spec-brand-stamp {
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink3);
+}
+
+/* HINDI */
+.hindi-section { margin-bottom: 32px; }
+.hindi-num {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 10px;
+}
+.hindi-line {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 17px; line-height: 2.1;
+  color: var(--ink2);
+}
+
+/* SANAK SPECIFIC */
+#sanak { background: var(--mb-dark); }
+.sanak-title-block { background: var(--mb-red); }
+.sanak-title-block .spec-brand-tag { color: rgba(255,255,255,0.5); }
+.sanak-title-block .spec-headline { color: #fff; }
+.sanak-title-block .spec-brief { color: rgba(255,255,255,0.6); }
+.sanak-title-block .tag { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.3); }
+.sanak-ghost {
+  position: absolute; top: -60px; right: -10px;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 280px; font-weight: 600;
+  color: rgba(0,0,0,0.15); line-height: 1;
+  pointer-events: none; user-select: none;
+}
+#sanak .spec-insight-block { background: rgba(255,255,255,0.04); }
+#sanak .script-block { border-top: 1px solid rgba(255,255,255,0.08); }
+
+/* ZEPTO SPECIFIC */
+#zepto { background: #0c0a14; }
+.zepto-title-block { background: var(--zepto-purple); }
+.zepto-title-block .spec-brand-tag { color: rgba(255,255,255,0.5); }
+.zepto-title-block .spec-headline { color: #fff; }
+.zepto-title-block .spec-brief { color: rgba(255,255,255,0.65); }
+#zepto .scene-text .commentary { color: var(--zepto-yellow); opacity: 0.8; }
+#zepto .spec-close { background: rgba(255,255,255,0.03); }
+#zepto .spec-tagline { color: var(--zepto-yellow); }
+
+/* TIC TAC SPECIFIC */
+#tictac { background: #0a0e08; }
+.tictac-title-block { background: #1e4a1a; }
+.tictac-title-block .spec-brand-tag { color: rgba(255,255,255,0.5); }
+.tictac-title-block .spec-headline { color: #fff; }
+.tictac-title-block .spec-brief { color: rgba(255,255,255,0.65); }
+#tictac .spec-tagline { color: #8fcc7a; }
+
+/* UPI SPECIFIC */
+#upi { background: #090c14; }
+.upi-title-block { background: var(--upi-navy); }
+.upi-title-block .spec-brand-tag { color: rgba(255,255,255,0.5); }
+.upi-title-block .spec-headline { color: #fff; }
+.upi-title-block .spec-brief { color: rgba(255,255,255,0.65); }
+#upi .spec-tagline { color: var(--upi-gold); }
+
+/* SCENES CARD LAYOUT for UPI */
+.scenes-cards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 40px;
+}
+.scene-card {
+  padding: 48px; background: rgba(255,255,255,0.03);
+}
+.scene-card-num {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--upi-gold); opacity: 0.7; margin-bottom: 14px;
+}
+.scene-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600;
+  margin-bottom: 16px; color: var(--ink);
+}
+.scene-card-body { font-size: 14px; line-height: 1.8; color: var(--ink2); }
+
+/* ROFF SPECIFIC */
+#roff { background: #100e0a; }
+.roff-title-block { background: #2a1f0a; }
+.roff-title-block .spec-headline { color: var(--gold); }
+#roff .spec-tagline { color: var(--gold); }
+
+/* JHUGAALI SPECIFIC */
+#jhugaali { background: #0c0e0a; }
+.jhugaali-title-block { background: #0e1a0a; }
+.jhugaali-title-block .spec-headline { color: #b8d4a0; }
+#jhugaali .spec-tagline { color: #b8d4a0; }
+
+/* ACCHI AADATE SPECIFIC */
+#acchi { background: #0e0c14; }
+.acchi-title-block { background: #1a1430; }
+.acchi-title-block .spec-headline { color: #c8b8e8; }
+#acchi .spec-tagline { color: #c8b8e8; }
+
+/* DIALOGUE */
+.dialogue {
+  padding: 16px 0 16px 24px;
+  border-left: 2px solid var(--red);
+  margin: 16px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 17px;
+  color: var(--ink); line-height: 1.65;
+}
+
+/* CAMPAIGN BREAKDOWNS */
+#campaigns { background: var(--bg2); padding: 140px 52px; }
+#campaigns .inner { max-width: 1200px; margin: 0 auto; }
+.campaigns-header { margin-bottom: 80px; }
+.campaigns-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--ink); margin-bottom: 16px;
+}
+.campaigns-sub { font-size: 15px; color: var(--ink3); max-width: 480px; line-height: 1.75; }
+
+.campaign-item {
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 80px;
+}
+.campaign-left {}
+.campaign-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 600;
+  color: var(--ink); margin-bottom: 8px;
+}
+.campaign-verdict {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 6px 12px; border: 1px solid;
+  display: inline-block; margin-top: 16px;
+  border-radius: 2px;
+}
+.verdict-success { color: #7ab870; border-color: #7ab870; }
+.verdict-fail { color: #c85050; border-color: #c85050; }
+.verdict-strategic { color: var(--gold); border-color: var(--gold); }
+
+.campaign-right {}
+.campaign-p { font-size: 15px; line-height: 1.9; color: var(--ink2); margin-bottom: 20px; }
+.campaign-p:last-child { margin-bottom: 0; }
+.campaign-p em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); }
+.campaign-principle {
+  margin-top: 32px; padding: 28px;
+  background: rgba(255,255,255,0.03);
+  border-left: 2px solid var(--red);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 18px;
+  color: var(--ink); line-height: 1.6;
+}
+
+/* FOOTER */
+footer {
+  padding: 64px 52px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; color: var(--ink2);
+}
+.footer-links { display: flex; gap: 36px; }
+.footer-links a {
+  font-size: 12px; letter-spacing: 0.08em;
+  color: var(--ink3); text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--ink); }
+
+/* FADE IN */
+.fade { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 0 24px 72px; }
+  #about { padding: 80px 24px; grid-template-columns: 1fr; gap: 32px; }
+  .about-label { position: static; }
+  .spec { padding: 100px 24px 80px; }
+  .spec-header { grid-template-columns: 1fr; }
+  .spec-title-block, .spec-insight-block { padding: 40px; min-height: auto; }
+  .why-grid { grid-template-columns: 1fr; }
+  .spec-close { padding: 40px; flex-direction: column; gap: 16px; align-items: flex-start; }
+  .scene-grid { grid-template-columns: 80px 1fr; }
+  .scenes-cards { grid-template-columns: 1fr; }
+  #campaigns { padding: 80px 24px; }
+  .campaign-item { grid-template-columns: 1fr; gap: 32px; }
+  footer { padding: 48px 24px; flex-direction: column; gap: 24px; }
+  .work-nav { padding: 40px 24px; }
+}
 </style>
 </head>
 <body>
@@ -109,14 +475,21 @@
   <div class="nav-name">Shivpratap Bishnoi</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
+    <li><a href="#sanak">Work</a></li>
+    <li><a href="#campaigns">Breakdowns</a></li>
     <li><a href="mailto:shivpratapbishnoiapsite@gmail.com">Contact</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-line-decor"></div>
   <div class="hero-content">
-    <h1 class="hero-name">Shivpratap<br>Bishnoi</h1>
+    <h1 class="hero-name">
+      <span>Shivpratap</span>
+      <em>Bishnoi</em>
+    </h1>
     <p class="hero-line">Culture speaks in patterns and registers in emotions. The social actor in me looks for those patterns and taps into the emotions.</p>
     <div class="hero-contact">
       <a href="mailto:shivpratapbishnoiapsite@gmail.com">shivpratapbishnoiapsite@gmail.com</a>
@@ -125,112 +498,623 @@
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="thin-rule"></div>
 
-<section class="about" id="about">
-  <div class="about-label">About</div>
-  <div class="about-text">
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-label fade">About</div>
+  <div class="about-text fade">
     <p>I've been noticing things my whole life without knowing there was a name for it. These three stories are the most honest answer I have to why that name might be advertising.</p>
-
-    <p>In 8th standard, I borrowed money from a friend and bought a <em style="color:var(--accent)">Cadbury Silk</em> for a girl. I wasn't really thinking about chocolate.</p>
-
-    <p>I was following a script that <em>Cadbury</em> had already written — that in India, if you love someone, you give them a Silk. The ad had done its job so completely that I wasn't even aware it had done anything.</p>
-
-    <p>I was just a boy with borrowed money, standing outside a classroom, holding purple packaging like it was a marriage proposal. I was still in 8th standard. What's love for that teen? What the girl said is a separate story and not the point.</p>
-
+    <p>In 8th standard, I borrowed money from a friend and bought a <em>Cadbury Silk</em> for a girl. I wasn't really thinking about chocolate.</p>
+    <p>I was following a script that <em>Cadbury</em> had already written. That in India, if you love someone, you give them a Silk. The ad had done its job so completely that I wasn't even aware it had done anything. I was just a boy with borrowed money, standing outside a classroom, holding purple packaging like it was a marriage proposal.</p>
     <p><em>That's when I realised tapping the right emotion is the backbone of any narrative.</em></p>
-
-    <p><em style="color:var(--accent)">"Darr ke aage jeet hai"</em> was my wallpaper throughout UPSC preparation. Not because I'm a Mountain Dew loyalist but because fear is the one emotion that nobody escapes.</p>
-
-    <p>Gabbar Singh knew it. Field Marshal Manekshaw once said that anyone who claims he feels no fear is either lying or he's a Gorkha. This was his way of saying fear is the most honest human condition there is.</p>
-
-    <p>Mountain Dew just found a way to sell a drink through it. That's what I find remarkable about advertising. Someone sat in a room, picked fear out of the thousands of human emotions available, and built something that outlasted the campaign. <em>Nike</em> did it with laziness. <em>Cadbury</em> did it with love. The product is almost incidental.</p>
-
-    <p>While conducting field research for a Bangalore-based political consultancy during the 2024 Lok Sabha elections, I realised the same behaviour applies to voters.</p>
-
-    <p>Choosing a candidate is not very different from picking a packet of chips off a rack. Every option has a USP, but only the one that taps the right emotion gets picked. The mechanics are the same be it Mountain Dew or Cadbury, just a different product.</p>
-
+    <p><em>"Darr ke aage jeet hai"</em> was my wallpaper throughout UPSC preparation. Not because I'm a Mountain Dew loyalist but because fear is the one emotion that nobody escapes. Gabbar Singh knew it. Field Marshal Manekshaw once said that anyone who claims he feels no fear is either lying or he's a Gorkha.</p>
+    <p>Mountain Dew just found a way to sell a drink through it. Someone sat in a room, picked fear out of the thousands of human emotions available, and built something that outlasted the campaign. <em>Nike</em> did it with laziness. <em>Cadbury</em> did it with love. The product is almost incidental.</p>
+    <p>While conducting field research for a Bangalore-based political consultancy during the 2024 Lok Sabha elections, I realised the same behaviour applies to voters. Choosing a candidate is not very different from picking a packet of chips off a rack. Every option has a USP, but only the one that taps the right emotion gets picked.</p>
     <p><strong>Still finding those connections, only this time where it belongs the most.</strong></p>
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="thin-rule"></div>
 
-<section class="work" id="work">
-  <div class="work-header">
-    <h2 class="work-title">Work</h2>
-    <span class="work-sub">Brief responses & ideas</span>
+<!-- WORK NAV -->
+<div class="work-nav">
+  <div class="work-nav-inner">
+    <a href="#sanak">Sanak</a>
+    <a href="#zepto">Chugli Se Bhi Tez</a>
+    <a href="#tictac">Musical Chair</a>
+    <a href="#upi">Lite Karo. Enlite Raho.</a>
+    <a href="#roff">Cementia Jugaad</a>
+    <a href="#jhugaali">Jhugaali</a>
+    <a href="#acchi">Acchi Aadate</a>
+    <a href="#campaigns">Campaign Breakdowns</a>
   </div>
-  <div class="cards">
+</div>
 
-    <div class="card wide" onclick="openModal('muscleblaze-sanak')">
-      <div class="card-brand">MuscleBlaze</div>
-      <div class="card-tag">Voiceover Concept</div>
-      <div class="card-title">Sanak</div>
-      <div class="card-desc">For everyone who once burned for something and then slowly stopped. The bar is sanak. Everything below it is a choice you are making right now.</div>
-      <div class="card-arrow">↗</div>
+<!-- 01 SANAK -->
+<section class="spec" id="sanak">
+  <div class="spec-inner">
+    <div class="section-num fade">01 / MuscleBlaze</div>
+    <div class="spec-header fade">
+      <div class="spec-title-block sanak-title-block" style="position:relative;overflow:hidden">
+        <div class="sanak-ghost">सनक</div>
+        <div class="spec-brand-tag">MuscleBlaze — Voiceover Concept</div>
+        <h2 class="spec-headline">Sanak</h2>
+        <p class="spec-brief">For everyone who once burned for something and then slowly stopped.</p>
+        <div class="tag-row">
+          <span class="tag" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.25)">Voiceover</span>
+          <span class="tag" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.25)">Fitness</span>
+          <span class="tag" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.25)">Hindi</span>
+        </div>
+      </div>
+      <div class="spec-insight-block">
+        <div class="spec-insight-label">The Insight</div>
+        <div class="spec-insight-quote">"Every MuscleBlaze campaign spoke to the person already on the path. Nobody had spoken to the person who left it."</div>
+        <div class="spec-insight-body">
+          <p>After reading four campaigns, a gap became visible. Tum Nahi Samjhoge identified the tribe. Ziddi Hoon Main gave it clarity. Naam Hai Ziddi proved it. Answer the Call explained the origin.</p>
+          <p>But every person in every film was already Ziddi. What about the person who used to be Ziddi and stopped? The deviation from the path is the untouched territory. Sanak lives there.</p>
+          <p>The word itself is the insight. Sanak means an obsession so complete it becomes identity. Everyone was sanki once. The voiceover does not motivate. It asks you to stop running from what you already know about yourself.</p>
+        </div>
+        <div class="tag-row">
+          <span class="tag" style="color:var(--mb-red);border-color:var(--mb-red)">Brand Reading First</span>
+          <span class="tag" style="color:rgba(255,255,255,0.4);border-color:rgba(255,255,255,0.2)">Emotional Recall</span>
+        </div>
+      </div>
     </div>
 
-    <div class="card" onclick="openModal('zepto')">
-      <div class="card-brand">Zepto</div>
-      <div class="card-tag">TVC Concept</div>
-      <div class="card-title">Chugli Se Bhi Tez</div>
-      <div class="card-desc">A family, a missing bag, a football match, and a sister who almost got her brother in trouble.</div>
-      <div class="card-arrow">↗</div>
+    <div class="script-block fade">
+      <div class="script-label">The Voiceover — Four Sections</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+        <div style="padding:48px;background:rgba(255,255,255,0.02)">
+          <div class="hindi-section">
+            <div class="hindi-num">I.</div>
+            <div class="hindi-line">सनकी, सरफ़िरे, जुनूनी — कई नाम हैं इनके,</div>
+            <div class="hindi-line">क्योंकि कमज़ोर कहलाना इन्हें मंज़ूर नहीं।</div>
+            <div class="hindi-line">मंज़ूर भी कैसे हो</div>
+            <div class="hindi-line">वो उम्र से बड़ा हौसला जो ठहरा</div>
+            <div class="hindi-line">जो देता है सनक इन्हें रोज़ खुद से भिड़ जाने की,</div>
+            <div class="hindi-line">खुद को तपाने की,</div>
+            <div class="hindi-line">हर बाज़ी खुद को बेहतर बनाने की।</div>
+          </div>
+          <div class="hindi-section">
+            <div class="hindi-num">II.</div>
+            <div class="hindi-line">कैसे हो महसूस और कैसे ही आए नज़र</div>
+            <div class="hindi-line">बिना परखे, बिना झांके खुद के भीतर</div>
+            <div class="hindi-line">वो शून्य का सन्नाटा, वो एकांत में पनपती सनक</div>
+            <div class="hindi-line">जो कह रही है तुमसे —</div>
+            <div class="hindi-line">वो ओढ़ अनगिनत घावों की ढालों को</div>
+            <div class="hindi-line">और देख उन ललकारों भरी नज़रों से उन खौफ़ खाती चुनौतियों को</div>
+            <div class="hindi-line">और चबा डालो उन लोहे की खुराकों को।</div>
+          </div>
+        </div>
+        <div style="padding:48px;background:rgba(255,255,255,0.03)">
+          <div class="hindi-section">
+            <div class="hindi-num">III.</div>
+            <div class="hindi-line">इन मुश्किलों की आहट और सिसकियों की गर्माहट से</div>
+            <div class="hindi-line">पूछने लगी हैं अब भीतर की उफनती लहरें</div>
+            <div class="hindi-line">कब लगेगी वो खुद से होड़</div>
+            <div class="hindi-line">जो देगी हर बंदिश को तोड़</div>
+            <div class="hindi-line">तो उठ, बना रास्ता — अब खुद से नाता जोड़।</div>
+          </div>
+          <div class="hindi-section">
+            <div class="hindi-num">IV.</div>
+            <div class="hindi-line">सूख चुका ये औसत दर्जे का जीवन,</div>
+            <div class="hindi-line">लगा रहा बस एक गुहार — बरस अब मेरे अपने भीतर,</div>
+            <div class="hindi-line">सुलगा दे अब एक ऐसी आग</div>
+            <div class="hindi-line">कि टूट सके ये ठहरा सा दौर।</div>
+            <div class="hindi-line">कर दे राख इन आधे-अधूरे ख़्वाबों के निशान,</div>
+            <div class="hindi-line">या तो बनाऊँ मैं खुद की पहचान</div>
+            <div class="hindi-line">या मिट जाऊँ लड़ते-लड़ते इस सनक के नाम।</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="card" onclick="openModal('tictac')">
-      <div class="card-brand">Tic Tac</div>
-      <div class="card-tag">TVC Concept</div>
-      <div class="card-title">Musical Chair</div>
-      <div class="card-desc">A bored uncle on the metro. A voiceover that won't let him scroll. Two mints and a challenge he didn't see coming.</div>
-      <div class="card-arrow">↗</div>
+    <div class="why-grid fade">
+      <div class="why-card">
+        <span class="why-num">01</span>
+        <div class="why-label">The Gap Found</div>
+        <div class="why-text">All four existing campaigns spoke to people already on the Ziddi path. The person who left the path and is now living an average life he once refused to accept — that person had never been addressed. That gap is what Sanak occupies.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02</span>
+        <div class="why-label">Why It Does Not Motivate</div>
+        <div class="why-text">Motivation assumes you need to be pushed toward something new. Sanak assumes you already know. It asks you to face what you have been avoiding. That is a harder and more honest ask, which is why it fits a brand that has always refused to be comfortable.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03</span>
+        <div class="why-label">Bhag Mat</div>
+        <div class="why-text">The closing line is not a tagline. It is the diagnosis. The average life is not a failure of capability. It is a failure of not running from the truth of what you once wanted. Accept kar. Train kar. The product is the physical proof of the mental decision.</div>
+      </div>
     </div>
 
-    <div class="card" onclick="openModal('upilite')">
-      <div class="card-brand">UPI Lite</div>
-      <div class="card-tag">TVC Concept</div>
-      <div class="card-title">Lite Karo. Enlite Raho.</div>
-      <div class="card-desc">An ashram. A bank statement growing on someone's forehead. And the quiet relief of a cleaner mind.</div>
-      <div class="card-arrow">↗</div>
+    <div class="spec-close fade">
+      <div class="spec-tagline">भाग मत. Accept kar. Train kar.</div>
+      <div class="spec-brand-stamp">MuscleBlaze</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 ZEPTO -->
+<section class="spec" id="zepto">
+  <div class="spec-inner">
+    <div class="section-num fade">02 / Zepto</div>
+    <div class="spec-header fade">
+      <div class="spec-title-block zepto-title-block">
+        <div class="spec-brand-tag">Zepto — TVC Concept</div>
+        <h2 class="spec-headline">Chugli Se<br>Bhi Tez.</h2>
+        <p class="spec-brief">Faster than the drama. Faster than the consequences.</p>
+        <div class="tag-row">
+          <span class="tag" style="color:var(--zepto-yellow);border-color:var(--zepto-yellow)">TVC</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Family Comedy</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Quick Commerce</span>
+        </div>
+      </div>
+      <div class="spec-insight-block">
+        <div class="spec-insight-label">The Insight</div>
+        <div class="spec-insight-quote">"Every Indian family runs on two things: chaos and covering for each other. Zepto became the third player."</div>
+        <div class="spec-insight-body">
+          <p>Zepto's existing ads used drama as the villain. A mother-in-law scolding. A boss speaking. An uncomfortable situation that Zepto interrupted. The zag here was different — the villain is not a person. It is a family conspiracy. The sister's chugli.</p>
+          <p>Speed here is not a feature. It is a peace-keeping device. Zepto does not just deliver in ten minutes. It delivers before the consequences of a mistake can land. That is a more specific and more human use of speed.</p>
+          <p>The football commentary running parallel to the domestic drama is the structural device that gives the script its rhythm. Each commentary beat mirrors a family beat. The doorbell rings at the exact moment of the final shot.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="card" onclick="openModal('roff-contractor')">
-      <div class="card-brand">Roff — Pidilite</div>
-      <div class="card-tag">TVC Concept</div>
-      <div class="card-title">Cementia Jugaad</div>
-      <div class="card-desc">A labour who knows his craft stops a contractor from making the wrong call. Because reputation is on the line.</div>
-      <div class="card-arrow">↗</div>
+    <div class="script-block fade">
+      <div class="script-label">Full Script</div>
+      <div class="scene-grid">
+        <div class="scene-marker">OPEN</div>
+        <div class="scene-text">Drawing room. Afternoon. <strong>Mother</strong> on the sofa, adding groceries to Zepto. <strong>Sister</strong> watching a movie. <strong>Brother</strong> walks in, snatches the remote, switches to football. His team is about to score. Sister is agitated. He ignores her.</div>
+
+        <div class="scene-marker">BEAT 1</div>
+        <div class="scene-text"><strong>Father</strong> walks in from the bedroom. <em>"Mera black bag nahi mil raha. Mujhe packing karni hai, shaam ko jaana hai."</em> Son freezes. Looks at mother, jaw clenched. Mother realises and frowns. Sister clocks everything.</div>
+
+        <div class="scene-marker">BEAT 2</div>
+        <div class="scene-text"><em>"Tu trip pe bag bhool gaya na?"</em> Sister jumps up. <span class="commentary">Commentator: Opposition has taken the ball. A roar from the crowd.</span> Brother grabs sister. They wrestle on the sofa, slide to the floor, crawling toward father's room.</div>
+
+        <div class="scene-marker">BEAT 3</div>
+        <div class="scene-text">Mother quietly opens Zepto. Finds the bag. Types in instructions: <em>remove all tags.</em> <span class="commentary">Commentator: Strong defence holding the line.</span> Siblings almost at father's door. <span class="commentary">Striker at the final defence, all set for the shot.</span></div>
+
+        <div class="scene-marker">RESOLVE</div>
+        <div class="scene-text"><strong>Doorbell rings.</strong> Mother walks to the door, bag in hand, just as father steps out of his room. <span class="commentary">Commentator: A close call, a missed opportunity.</span> She hands him the bag. <em>"Kaun tha darwaze pe?"</em> <em>"Iska dost tha."</em> <span class="commentary">And that is a penalty.</span> Father turns to son still on the floor. <em>"Saara din dosti nibhao aur match dekho. Bahut badhiya hai."</em> Takes the bag. Walks away. Sister, still on the floor, laughs.</div>
+      </div>
     </div>
 
-    <div class="card" onclick="openModal('colgate-chugaali')">
-      <div class="card-brand">Colgate</div>
-      <div class="card-tag">TVC Concept</div>
-      <div class="card-title">Jhugaali</div>
-      <div class="card-desc">A different direction. Shorter. Funnier. The buffalo doesn't care. You should.</div>
-      <div class="card-arrow">↗</div>
+    <div class="why-grid fade">
+      <div class="why-card">
+        <span class="why-num">01</span>
+        <div class="why-label">Why This Family</div>
+        <div class="why-text">Every Indian viewer has lived a version of this scene. The comedy is recognition, not invention. The mother-as-fixer is a cultural truth that needs no setup. The brother's guilt, the sister's opportunism, the father's obliviousness — all instantly readable.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02</span>
+        <div class="why-label">The Commentary Device</div>
+        <div class="why-text">The football commentary running parallel to the domestic drama gives the script a rhythm that earns every laugh without spelling it out. The doorbell ringing at the moment of the final shot is the creative peak. Two timelines, one resolution.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03</span>
+        <div class="why-label">Where Zepto Appears</div>
+        <div class="why-text">Zepto does not appear until the doorbell. It solves the problem silently. The tagline lands because it has just been demonstrated, not promised. Chugli se bhi tez is not a claim. It is the conclusion the audience just reached themselves.</div>
+      </div>
     </div>
 
-    <div class="card wide" onclick="openModal('colgate-acchi')">
-      <div class="card-brand">Colgate</div>
-      <div class="card-tag">TVC Concept</div>
-      <div class="card-title">Acchi Aadate</div>
-      <div class="card-desc">A gentle reminder to brush at night. A mother's quiet act of love that travels further than she knows.</div>
-      <div class="card-arrow">↗</div>
+    <div class="spec-close fade">
+      <div class="spec-tagline" style="color:var(--zepto-yellow)">Chugli se bhi tez.</div>
+      <div class="spec-brand-stamp">Zepto</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TIC TAC -->
+<section class="spec" id="tictac">
+  <div class="spec-inner">
+    <div class="section-num fade">03 / Tic Tac</div>
+    <div class="spec-header fade">
+      <div class="spec-title-block tictac-title-block">
+        <div class="spec-brand-tag">Tic Tac — TVC Concept</div>
+        <h2 class="spec-headline">Musical<br>Chair</h2>
+        <p class="spec-brief">A bored uncle on the metro. A voiceover that won't let him scroll.</p>
+        <div class="tag-row">
+          <span class="tag" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.25)">TVC</span>
+          <span class="tag" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.25)">Confectionery</span>
+          <span class="tag" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.25)">Role Reversal</span>
+        </div>
+      </div>
+      <div class="spec-insight-block">
+        <div class="spec-insight-label">The Insight</div>
+        <div class="spec-insight-quote">"Every Tic Tac ad targets youth. The uncle voice tells youth what to do. This one turns the table."</div>
+        <div class="spec-insight-body">
+          <p>Tic Tac's category is youth and cool. The conventional move is to show young people doing something fun. Every Centre Fresh, every Mentos, every competitor does the same thing — the voiceover is preachy, the character is young, the product is the reward for being cool.</p>
+          <p>The zag: uncles in Indian society are the ones who preach. They tell you to put the phone down. They scold you for brain rot. But fathers and uncles are now the ones most stuck in the scroll loop. The irony is visible and nobody has used it.</p>
+          <p>Putting a 50-something uncle with a moustache in a metro full of young people, and having a young voiceover preach to him, inverts every convention of the category. The uncle savouring two Tic Tacs with his eyes closed in slow motion is the visual that makes him briefly, genuinely cool. Not despite his age. Because of it.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="card wide" onclick="openModal('muscleblaze-reading')">
-      <div class="card-brand">MuscleBlaze</div>
-      <div class="card-tag">Brand Reading</div>
-      <div class="card-title">Breaking Four Campaigns</div>
-      <div class="card-desc">Before writing for a brand, understand what it has already said. Four campaigns. One through-line.</div>
-      <div class="card-arrow">↗</div>
+    <div class="script-block fade">
+      <div class="script-label">The Script</div>
+      <div class="scene-grid">
+        <div class="scene-marker">OPEN</div>
+        <div class="scene-text">Metro. An uncle, big moustache, sitting. Bored. Sees others watching reels. Pulls out his smartphone to do the same.</div>
+
+        <div class="scene-marker">VOICEOVER</div>
+        <div class="scene-text">
+          <div class="dialogue">Bore ho rahe ho uncle? Mann nahi lag raha? Magar ye paap nahi karne dengey hum aapko.</div>
+          <div class="dialogue">Simple hai uncle.<br>Tic Tac ko kholo.<br>2 goli nikaalo.<br>1 jeeb k upar, ek jeeb k neeche.<br>Aur shuru zubaan pe musical chair ka khel.<br>Neeche waali ko upar aur upar waali ko neeche.<br>Kabhi clockwise toh kabhi anti clockwise.</div>
+        </div>
+
+        <div class="scene-marker">BEAT</div>
+        <div class="scene-text">Slow motion. Uncle, eyes closed. Savouring the Tic Tac. Face completely at peace. Lost in it. The metro, the crowd, the phone — all gone.</div>
+
+        <div class="scene-marker">CLOSE</div>
+        <div class="scene-text">He finishes the round. Three Tic Tacs left in the box.</div>
+        <div class="scene-marker"></div>
+        <div class="scene-text"><div class="dialogue">3 goli left in the box. Come on uncle, you can do it!</div></div>
+      </div>
+    </div>
+
+    <div class="why-grid fade">
+      <div class="why-card">
+        <span class="why-num">01</span>
+        <div class="why-label">The Zag</div>
+        <div class="why-text">Every Tic Tac ad targets youth. The uncle format is the opposite of what the category expects. The contrast between a tough-looking 50-year-old with a moustache and a young playful voiceover is where the comedy lives.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02</span>
+        <div class="why-label">The Irony</div>
+        <div class="why-text">Uncles tell youth to stop using phones. Now uncles are the ones most stuck in the scroll loop. The voiceover preaching to the uncle does what the uncle used to do to everyone else. Recognition without cruelty.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03</span>
+        <div class="why-label">The Slow Mo Moment</div>
+        <div class="why-text">The uncle savouring the Tic Tac with his eyes closed is the visual that earns everything. He is not doing something youth-coded. He is doing something better. Fully present, completely absorbed. The product delivers what the phone couldn't.</div>
+      </div>
+    </div>
+
+    <div class="spec-close fade">
+      <div class="spec-tagline" style="color:#8fcc7a">Tic Tac.</div>
+      <div class="spec-brand-stamp">Tic Tac</div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 UPI LITE -->
+<section class="spec" id="upi">
+  <div class="spec-inner">
+    <div class="section-num fade">04 / UPI Lite</div>
+    <div class="spec-header fade">
+      <div class="spec-title-block upi-title-block">
+        <div class="spec-brand-tag">UPI Lite — TVC Concept</div>
+        <h2 class="spec-headline">Lite Karo.<br>Enlite Raho.</h2>
+        <p class="spec-brief">The weight of every small transaction. And the relief of letting it go.</p>
+        <div class="tag-row">
+          <span class="tag" style="color:var(--upi-gold);border-color:var(--upi-gold)">Absurdist TVC</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Fintech</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Visual Comedy</span>
+        </div>
+      </div>
+      <div class="spec-insight-block">
+        <div class="spec-insight-label">The Insight</div>
+        <div class="spec-insight-quote">"What if your bank statement had a face? And that face was yours, ageing in real time?"</div>
+        <div class="spec-insight-body">
+          <p>UPI Lite removes small transactions from your bank statement. The functional benefit is obvious. The emotional benefit was underserved.</p>
+          <p>The insight: a cluttered bank statement creates a psychological heaviness disproportionate to the size of individual transactions. Rs. 6 for chai. Rs. 18 for parking. None of it matters. All of it accumulates. The product does not just clean your statement. It cleans your relationship with money.</p>
+          <p>Setting the ad in a meditation centre makes the metaphor physical. Enlightenment and Enlitement become the same word. The wordplay earns itself because the setting earns it first.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="script-block fade">
+      <div class="script-label">Four Scenes</div>
+      <div class="scenes-cards">
+        <div class="scene-card">
+          <div class="scene-card-num">Scene 01</div>
+          <div class="scene-card-title">The Weight</div>
+          <div class="scene-card-body">Meditation centre. A man trying to concentrate. Bank notification sounds hit one after another. Rs. 1 lakh, Rs. 18, Rs. 340, Rs. 6. With each, his face tightens. Wrinkles form. He begins ageing. His bank statement appears on his forehead. His head flattens and widens, literally becoming a statement.</div>
+        </div>
+        <div class="scene-card">
+          <div class="scene-card-num">Scene 02</div>
+          <div class="scene-card-title">The Lift</div>
+          <div class="scene-card-body">The man next to him. Same state, same frustration. Then a sound. UPI Lite downloaded. Instantly he lifts off the ground, cross-legged, floating. Wrinkles fade. Statement slides off his face onto the mat below. Clean. Only: salary, rent, UPI Lite top-up. He is smiling.</div>
+        </div>
+        <div class="scene-card">
+          <div class="scene-card-num">Scene 03</div>
+          <div class="scene-card-title">The Ashram</div>
+          <div class="scene-card-body">Every phone rings at once. Download complete. UPI Lite. One by one, every person in the ashram begins to float, cross-legged above their mats. Statements clean below them. Faces light. The room fills upward.</div>
+        </div>
+        <div class="scene-card">
+          <div class="scene-card-num">Scene 04</div>
+          <div class="scene-card-title">The Last Man</div>
+          <div class="scene-card-body">Our first man. Still on the ground. Still frowning. Head still a bank statement. He looks around. Everyone is floating. His phone buzzes. Download complete. He looks down. Looks up. Taps. He rises.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-grid fade">
+      <div class="why-card">
+        <span class="why-num">01</span>
+        <div class="why-label">The Visual Idea</div>
+        <div class="why-text">The head becoming a bank statement is the kind of image that, once seen, explains the product without a word of copy. It does not describe the benefit. It shows what the problem feels like from the inside. That is the test of a visual idea.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02</span>
+        <div class="why-label">Why the Ashram</div>
+        <div class="why-text">Placing a fintech ad in an ashram does two things: it creates unexpected contrast between money and meditation, and it earns the wordplay in the tagline. Enlite is not a pun. It is the point. The setting makes it land honestly.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03</span>
+        <div class="why-label">The Last Beat</div>
+        <div class="why-text">Saving the first man for last turns the ad into a story with a shape. He is the viewer. His hesitation is the hesitation. His rising is the download. The audience has already wanted him to rise for thirty seconds by the time he does.</div>
+      </div>
+    </div>
+
+    <div class="spec-close fade">
+      <div class="spec-tagline" style="color:var(--upi-gold)">Lite Karo. Enlite Raho.</div>
+      <div class="spec-brand-stamp">UPI Lite</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ROFF -->
+<section class="spec" id="roff">
+  <div class="spec-inner">
+    <div class="section-num fade">05 / Roff</div>
+    <div class="spec-header fade">
+      <div class="spec-title-block roff-title-block">
+        <div class="spec-brand-tag">Roff Tile Adhesives — TVC Concept</div>
+        <h2 class="spec-headline">Cementia<br>Jugaad</h2>
+        <p class="spec-brief">The labour knows what works. The contractor just needed to be told.</p>
+        <div class="tag-row">
+          <span class="tag" style="color:var(--gold);border-color:var(--gold)">TVC</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Construction</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Humour</span>
+        </div>
+      </div>
+      <div class="spec-insight-block">
+        <div class="spec-insight-label">The Insight</div>
+        <div class="spec-insight-quote">"Cement became the default not because it was right, but because nobody had offered an alternative. The labour knew this before anyone else."</div>
+        <div class="spec-insight-body">
+          <p>The product pitch for Roff is incomplete without two characters: the labour and the contractor. The contractor could be shown as corrupt or as unaware. Showing him as corrupt makes it allegorical and alienates a decision-maker. Showing him as simply unaware gives him a benefit of the doubt that makes the ad warmer and more honest.</p>
+          <p>The labour is the real hero because he is the actual end user in the entire industry. He knows what works from experience. His approval carries more weight than any celebrity or expert because it comes from someone who has lived the problem. He is the friend who always pitches the right product wherever he goes.</p>
+          <p>The aata, chawal, basmati analogy is the creative device that makes the product truth funny without making the contractor look stupid. He is not wrong to be confused. Nobody had explained it to him this way before.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="script-block fade">
+      <div class="script-label">The Script</div>
+      <div class="scene-grid">
+        <div class="scene-marker">OPEN</div>
+        <div class="scene-text"><strong>Contractor</strong> on phone: <em>"Tile chipkane k liye cement bhijwa do."</em></div>
+
+        <div class="scene-marker">BEAT 1</div>
+        <div class="scene-text"><strong>Labour</strong> steps forward, stops him. <em>"Sir, rukiye."</em> Contractor confused, covers phone. <em>"Kya hua?"</em></div>
+
+        <div class="scene-marker">BEAT 2</div>
+        <div class="scene-text"><em>"Cement se tile chipkayenge sir, daliye sey nahi?"</em> Contractor: <em>"KYA?"</em> Labour: <em>"Accha chalo batao aata kaisa rahega?"</em> Contractor, annoyed: <em>"Pagal ho gaye ho kya?"</em></div>
+
+        <div class="scene-marker">BEAT 3</div>
+        <div class="scene-text"><em>"Acha aata nahi, fir geele chawal, basmati kaisa rahega?"</em> Contractor: <em>"Band karo ye bakwas."</em></div>
+
+        <div class="scene-marker">RESOLVE</div>
+        <div class="scene-text">Labour, pause, looks at him: <em>"Sir, agar formality hi karni ho toh ye options bhi utney hi juggadu hai jitna ki cement."</em> Contractor: <em>"Tum batao fir, cement se mazboot kya hai?"</em> Labour: <em>"Magar ki jakad sir. Pidilite Roff."</em> Contractor, back on phone: <em>"Cancel karo cement. Roff bhijwa do."</em></div>
+      </div>
+    </div>
+
+    <div class="why-grid fade">
+      <div class="why-card">
+        <span class="why-num">01</span>
+        <div class="why-label">Why the Labour is the Hero</div>
+        <div class="why-text">The labour is the actual end user of the product. His hands do the work. His reputation depends on the result. When he recommends Roff it carries the weight of someone who has lived the difference between cement and the right material. No celebrity can match that credibility.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02</span>
+        <div class="why-label">The Analogy Device</div>
+        <div class="why-text">Aata, chawal, basmati used as analogies for cement makes the product truth funny without making the contractor look corrupt or stupid. He used cement because nobody had offered him anything else. The analogy is the moment of clarity, not the moment of humiliation.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03</span>
+        <div class="why-label">The Villain</div>
+        <div class="why-text">The villain is not cement and not the contractor. The villain is the absence of a better option for so long that cement became the default. Roff does not beat cement. It fills the gap that cement was never meant to fill.</div>
+      </div>
+    </div>
+
+    <div class="spec-close fade">
+      <div class="spec-tagline" style="color:var(--gold)">Tile ke liye sirf Roff. Koi Cementia jugaad nahi.</div>
+      <div class="spec-brand-stamp">Roff</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 JHUGAALI -->
+<section class="spec" id="jhugaali">
+  <div class="spec-inner">
+    <div class="section-num fade">06 / Colgate</div>
+    <div class="spec-header fade">
+      <div class="spec-title-block jhugaali-title-block">
+        <div class="spec-brand-tag">Colgate — TVC Concept</div>
+        <h2 class="spec-headline">Jhugaali</h2>
+        <p class="spec-brief">The buffalo doesn't care. You should.</p>
+        <div class="tag-row">
+          <span class="tag" style="color:#b8d4a0;border-color:#b8d4a0">TVC</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Night Brushing</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Observational Comedy</span>
+        </div>
+      </div>
+      <div class="spec-insight-block">
+        <div class="spec-insight-label">The Insight</div>
+        <div class="spec-insight-quote">"Every toothpaste ad shows the habit in place. This one shows what happens while you sleep when you don't have it."</div>
+        <div class="spec-insight-body">
+          <p>Most night brushing communication tells you about bacteria, cavities, and consequences. The audience already knows. They just don't act. The problem is not awareness. It is the moment when sleep wins over the effort of brushing.</p>
+          <p>The real insight is biological. Eight hours of reduced saliva flow means bacteria feed on leftover food particles all night. The body does what the buffalo does — jhugaali — without you knowing. The buffalo has an excuse. It is biologically designed for this. You are not.</p>
+          <p>The distinction is not mean. It is honest. The buffalo is not the villain. He is simply unbothered. That unbothered quality is what makes the comparison funny rather than judgmental.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="script-block fade">
+      <div class="script-label">The Script</div>
+      <div class="scene-grid">
+        <div class="scene-marker">SCENE 1</div>
+        <div class="scene-text">Quiet bedroom. Night. Soft moonlight. A man sleeping. Happy face. Mouth slightly moving, savouring the palak stuck in his teeth and chewing it a little.</div>
+
+        <div class="scene-marker">SCENE 2</div>
+        <div class="scene-text">A buffalo. Closed eyes. Same energy. Calm. Unbothered. Chewing slowly. Green paalak visible. Does not care about anything around him.</div>
+
+        <div class="scene-marker">VOICEOVER</div>
+        <div class="scene-text"><div class="dialogue">"Raat mein jhugaali sirf bhains ko suit karti hai, insaano ko nahi."</div></div>
+
+        <div class="scene-marker">CLOSE</div>
+        <div class="scene-text">Night scene at a sink. Colgate. Buffalo still chewing somewhere in the background. Unbothered. Crickets. Night insects.</div>
+      </div>
+    </div>
+
+    <div class="why-grid fade">
+      <div class="why-card">
+        <span class="why-num">01</span>
+        <div class="why-label">The Visual Parallel</div>
+        <div class="why-text">Man sleeping and buffalo chewing are shown side by side as mirror images. No explanation needed. The audience closes the loop themselves. The parallel is uncomfortable enough to be memorable and absurd enough to be funny.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02</span>
+        <div class="why-label">The Buffalo's Role</div>
+        <div class="why-text">The buffalo is not a villain. He is genuinely unbothered because he has no reason to care. He is biologically built for this. The ad does not mock him. His indifference is the joke, not the punchline. This keeps the tone warm rather than cruel.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03</span>
+        <div class="why-label">Sound Off Test</div>
+        <div class="why-text">The entire ad works without sound. Man chewing in sleep, buffalo chewing slowly, sink with Colgate. The voiceover adds the distinction. The visual does the argument. This is the test of whether an idea is visual or just verbal.</div>
+      </div>
+    </div>
+
+    <div class="spec-close fade">
+      <div class="spec-tagline" style="color:#b8d4a0">Raat ko brush karo.</div>
+      <div class="spec-brand-stamp">Colgate</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 ACCHI AADATE -->
+<section class="spec" id="acchi">
+  <div class="spec-inner">
+    <div class="section-num fade">07 / Colgate</div>
+    <div class="spec-header fade">
+      <div class="spec-title-block acchi-title-block">
+        <div class="spec-brand-tag">Colgate — TVC Concept</div>
+        <h2 class="spec-headline">Acchi<br>Aadate</h2>
+        <p class="spec-brief">A mother's quiet act of love that travels further than she knows.</p>
+        <div class="tag-row">
+          <span class="tag" style="color:#c8b8e8;border-color:#c8b8e8">TVC</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Night Brushing</span>
+          <span class="tag" style="color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.2)">Emotional</span>
+        </div>
+      </div>
+      <div class="spec-insight-block">
+        <div class="spec-insight-label">The Insight</div>
+        <div class="spec-insight-quote">"Every toothpaste ad shows the habit already in place. This one shows the moment it almost breaks, and what brings it back."</div>
+        <div class="spec-insight-body">
+          <p>The brief was to convince people to brush at night. The problem is not awareness. Everyone knows they should. The problem is the first night away from home, the first time no one is watching, the first time the bed wins before the bathroom.</p>
+          <p>The mother does not hand the toothpaste to her daughter. She packs it quietly while the daughter is looking elsewhere. The daughter does not see it happen. The mother prepares for a moment the daughter does not even know is coming.</p>
+          <p>That is not a product placement. That is love made practical. The toothpaste rolling out of the bag is not a brand moment. It is the mother arriving at the exact right time, the way mothers do.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="script-block fade">
+      <div class="script-label">The Script</div>
+      <div class="scene-grid">
+        <div class="scene-marker">SCENE 1</div>
+        <div class="scene-text">Bus stop. A girl around 14, leaving for hostel for the first time from a small town. Not talking much. Lost in emotions and nervousness. Mother enters hastily, hands her a box of food, and slips something into the bag from behind. Zip closes quietly. <div class="dialogue">"Hostel jaakar achi aadate mat bhul jaana."</div> She boards the bus.</div>
+
+        <div class="scene-marker">SCENE 2</div>
+        <div class="scene-text">Hostel. First night. Everything alien. She settles in the room. Two beds. She takes the empty one. No roommate yet. Slides luggage under the bed, keeps the backpack. Tired. Missing home. All set to sleep when the bag under her head falls and the half-zipped chain lets the Colgate roll onto the floor. She stares at it. Her mother's voice, in her memory: <div class="dialogue">"Hostel jaakar achi aadate mat bhul jaana."</div> She picks the paste. Heads to the washroom.</div>
+
+        <div class="scene-marker">SCENE 3</div>
+        <div class="scene-text">Bathroom. Her roommate already at the mirror, brushing with the same Colgate tube. Her clothes show she is from a city. Same first hostel night written on her face. They see each other in the mirror. Smile. Exhausted. Relieved. Two girls. Two mothers. The same quiet act of love, packed into a bag without making a show of it.</div>
+      </div>
+    </div>
+
+    <div class="why-grid fade">
+      <div class="why-card">
+        <span class="why-num">01</span>
+        <div class="why-label">Why Silent Packing</div>
+        <div class="why-text">The mother packs the toothpaste while the daughter is looking at the platform. The daughter never sees it go in. This small detail makes the discovery in the hostel room a delayed gift rather than an instruction. The gap between the giving and the receiving is where the emotion lives.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02</span>
+        <div class="why-label">The Effort Beat</div>
+        <div class="why-text">Getting up from the bed is the hardest action in the ad. It is shown honestly. Not graceful, not inspirational. Just real. The audience has been in that exact moment. Showing it honestly is more convincing than any dental statistic.</div>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03</span>
+        <div class="why-label">The Second Girl</div>
+        <div class="why-text">Two girls from different backgrounds, same toothpaste, same first night. The ad stops being one girl's story. It becomes every mother's story. Two mothers who never met prepared for the same moment without knowing the other existed. Colgate is the common thread.</div>
+      </div>
+    </div>
+
+    <div class="spec-close fade">
+      <div class="spec-tagline" style="color:#c8b8e8">Jagah nayee. Aadat wahi.</div>
+      <div class="spec-brand-stamp">Colgate</div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN BREAKDOWNS -->
+<section id="campaigns">
+  <div class="inner">
+    <div class="campaigns-header fade">
+      <div class="section-num">08 / Campaign Breakdowns</div>
+      <h2 class="campaigns-title">Reading<br>What Already Exists</h2>
+      <p class="campaigns-sub">Three brands. Three different relationships with their audiences. Three different outcomes when that relationship was tested.</p>
+    </div>
+
+    <div class="campaign-item fade">
+      <div class="campaign-left">
+        <div class="campaign-brand">Amul</div>
+        <div style="font-size:13px;color:var(--ink3);margin-top:8px;line-height:1.6">Observational commentary since 1967. The Amul Girl.</div>
+        <div class="campaign-verdict verdict-success">60 Years. Still Relevant.</div>
+      </div>
+      <div class="campaign-right">
+        <p class="campaign-p">Amul's style of communication has been consistent across three generations. Governments have changed, economic policy has changed, cultures have changed, and yet the Amul girl speaks to every common man and woman through topical commentary on global issues, national issues, and pop culture. It creates a community and it is constant in doing so.</p>
+        <p class="campaign-p">What Amul cracked is the tone. It is not the tone of a brand instructing its audience. It is the tone of the common Indian citizen observing life. That distinction is everything. Sixty years of maintaining that tone without slipping into preaching, without overreaching into territory that would alienate any part of its audience, is the real achievement.</p>
+        <p class="campaign-p">It creates relatability in the short run and cultural relevance in the longer run. The topical commentary is the format. The underlying promise is: we see what you see, and we will always show up to notice it with you.</p>
+        <div class="campaign-principle">The brand that lasts is not the one with the best product. It is the one that becomes part of how people make sense of what is happening around them.</div>
+      </div>
+    </div>
+
+    <div class="campaign-item fade">
+      <div class="campaign-left">
+        <div class="campaign-brand">Gillette</div>
+        <div style="font-size:13px;color:var(--ink3);margin-top:8px;line-height:1.6">We Believe: The Best Men Can Be. MeToo era TVC.</div>
+        <div class="campaign-verdict verdict-fail">Miscommunication</div>
+      </div>
+      <div class="campaign-right">
+        <p class="campaign-p">Gillette had thirty years of "The Best a Man Can Get." That line built loyalty among men. The brand stood beside men. It patronised them in the best sense of the word. When a man used Gillette he was told he deserved the best. That is a relationship built on respect and aspiration.</p>
+        <p class="campaign-p">The MeToo era TVC showed men as cruel, misogynist, and violent toward women. Though this was a social fact and there was nothing wrong in what was being depicted, it came from a brand that had spent thirty years standing beside those same men. When it comes from such a brand, the TVC turned into an allegation. It felt like backstabbing.</p>
+        <p class="campaign-p">The intent was to shed toxic behaviour the way a razor sheds a beard. The metaphor is clean. But the execution broke the established relationship without renegotiating it first. The audience felt accused by someone who was supposed to know them. That is not a creative failure. It is a trust failure.</p>
+        <div class="campaign-principle">A brand can only shift its relationship with its audience after it has given that audience a reason to follow it there. Gillette moved without asking anyone to come along.</div>
+      </div>
+    </div>
+
+    <div class="campaign-item fade">
+      <div class="campaign-left">
+        <div class="campaign-brand">Tanishq</div>
+        <div style="font-size:13px;color:var(--ink3);margin-top:8px;line-height:1.6">Ekatvam. 2020. Withdrawn under political pressure.</div>
+        <div class="campaign-verdict verdict-strategic">Strategic Failure</div>
+      </div>
+      <div class="campaign-right">
+        <p class="campaign-p">The Ekatvam campaign was not a creative flaw. The cause was right. The audience backed it. Progressive urban women who had always stood with Tanishq's previous stands were behind this film entirely. The creative read the room correctly.</p>
+        <p class="campaign-p">The failure was strategic. When organised political pressure came, Tanishq withdrew the campaign. In doing so, it abandoned the very customers who had stood with it at the moment of pressure. The withdrawal signalled that the brand's commitment to its audience was conditional. That broke the relationship from the other side.</p>
+        <p class="campaign-p">The lesson is not to avoid cultural stands. It is to only take a stand when you are prepared to defend it. A brand that retreats at the first challenge tells its audience that it does not actually believe what it said. That is a more damaging message than any campaign could be.</p>
+        <div class="campaign-principle">Before taking a stand, the only question that matters is not whether your audience agrees. It is whether you are prepared to stay when they need you to.</div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="thin-rule"></div>
 
 <footer>
   <div class="footer-name">Shivpratap Bishnoi</div>
@@ -240,275 +1124,13 @@
   </div>
 </footer>
 
-<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-header">
-      <div class="modal-brand" id="m-brand"></div>
-      <div class="modal-tag" id="m-tag"></div>
-      <div class="modal-title" id="m-title"></div>
-      <div class="modal-brief" id="m-brief"></div>
-    </div>
-    <div class="modal-body" id="m-body"></div>
-  </div>
-</div>
-
 <script>
-const content = {
-
-'roff-contractor': {
-  brand: 'Roff — Pidilite',
-  tag: 'TVC Concept',
-  title: 'Cementia Jugaad',
-  brief: 'A skilled labour protects his reputation by insisting on the right material.',
-  body: `
-    <div class="modal-section-label">The Insight</div>
-    <p class="modal-p">Cement became the default for fixing tiles not because it is right, but because there was no alternative. A skilled labour knows cement is as absurd as using aata or daliya for tiles. Roff is the only tool made specifically for this job. When a labour insists on Roff, he is protecting his reputation and his livelihood.</p>
-    <div class="modal-section-label">The Script</div>
-    <p class="modal-p"><strong>Contractor</strong> (on phone): <em>"Tile chipkane k liye cement bhijwa do."</em></p>
-    <p class="modal-p"><strong>Labour</strong> (steps forward, stops him): <em>"Sir, rukiye."</em></p>
-    <p class="modal-p"><strong>Contractor</strong> (confused, covers phone): <em>"Kya hua?"</em></p>
-    <p class="modal-p"><strong>Labour</strong>: <em>"Cement se tile chipkayenge sir, daliye sey nahi?"</em></p>
-    <p class="modal-p"><strong>Contractor</strong>: <em>"KYA?"</em></p>
-    <p class="modal-p"><strong>Labour</strong>: <em>"Accha chalo batao aata kaisa rahega?"</em></p>
-    <p class="modal-p"><strong>Contractor</strong> (annoyed): <em>"Pagal ho gaye ho kya?"</em></p>
-    <p class="modal-p"><strong>Labour</strong>: <em>"Acha aata nahi, fir geele chawal, basmati kaisa rahega?"</em></p>
-    <p class="modal-p"><strong>Contractor</strong>: <em>"Band karo ye bakwas."</em></p>
-    <p class="modal-p"><strong>Labour</strong> (pause, looks at him): <em>"Sir, agar formality hi karni ho toh ye options bhi utney hi juggadu hai jitna ki cement."</em></p>
-    <p class="modal-p"><strong>Contractor</strong>: <em>"Tum batao fir, cement se mazboot kya hai?"</em></p>
-    <p class="modal-p"><strong>Labour</strong>: <em>"Magar ki jakad sir. Pidilite Roff."</em></p>
-    <p class="modal-p"><strong>Contractor</strong> (realizes, back on phone): <em>"Cancel karo cement. Roff bhijwa do."</em></p>
-    <div class="modal-tagline">Tile ke liye sirf Roff. Koi Cementia jugaad nahi.</div>
-    <div class="modal-brand-stamp">ROFF</div>
-  `
-},
-
-'colgate-chugaali': {
-  brand: 'Colgate',
-  tag: 'TVC Concept',
-  title: 'Jhugaali',
-  brief: 'A nudge to brush at night.',
-  body: `
-    <div class="modal-section-label">Scene 1</div>
-    <p class="modal-p">Quiet bedroom. Night. Soft moonlight.</p>
-    <p class="modal-p">A man sleeping. Happy face. Mouth slightly moving, savouring the palak stuck in his teeth and chewing it a little.</p>
-    <div class="modal-section-label">Scene 2</div>
-    <p class="modal-p">A buffalo. Closed eyes. Same energy. Calm. Unbothered. Chewing slowly. Green paalak visible. Does not care about anything around him.</p>
-    <div class="modal-section-label">Voiceover</div>
-    <div class="modal-dialogue">"Raat mein jhugaali sirf bhains ko suit karti hai, insaano ko nahi."</div>
-    <div class="modal-section-label">Scene 3</div>
-    <p class="modal-p">Night scene at a sink. Colgate. Buffalo still chewing somewhere, unbothered.</p>
-    <p class="modal-p">Crickets. Night insects. Buffalo still chewing. Unbothered.</p>
-    <div class="modal-tagline">Raat ko brush karo.</div>
-    <div class="modal-brand-stamp">COLGATE</div>
-  `
-},
-
-'muscleblaze-reading': {
-  brand: 'MuscleBlaze',
-  tag: 'Brand Reading',
-  title: 'Breaking Four Campaigns',
-  brief: 'Before writing for a brand, understand what it has already said.',
-  body: `
-    <div class="campaign-item">
-      <div class="campaign-name">Tum Nahi Samjhoge</div>
-      <div class="campaign-one-line">Mirror to the tribe and the rest.</div>
-      <div class="campaign-detail">The brand is recognising people who are disciplined and calling it their tribe. At the same time it is a wake up call to those doing physical exercise but lacking discipline. A celebration for the tribe and a mirror for everyone else.</div>
-    </div>
-    <div class="campaign-item">
-      <div class="campaign-name">Ziddi Hoon Main</div>
-      <div class="campaign-one-line">Test of the tribe.</div>
-      <div class="campaign-detail">This moves past discipline. It is about putting in efforts and being unbowed, non-explanatory. The zag: an old father still working out, a mother training while her daughter studies, someone with a perfect body still pushing. You don't stop when you are old. You don't stop when you have arrived.</div>
-    </div>
-    <div class="campaign-item">
-      <div class="campaign-name">Naam Hai Ziddi</div>
-      <div class="campaign-one-line">Test continues.</div>
-      <div class="campaign-detail">Three examples, three specific guilt deliveries. The bodybuilder running a pan shop — guilt to the privileged. The trans man with complete clarity about who he wants to become — guilt to the indecisive. The person attempting transformation for the third time — guilt to the inconsistent. Both a celebration and an indictment in the same film.</div>
-    </div>
-    <div class="campaign-item">
-      <div class="campaign-name">Answer the Call</div>
-      <div class="campaign-one-line">State your reason.</div>
-      <div class="campaign-detail">The campaign explains why Zidd matters by showing where it came from. Three people, three origin stories. The product — Biozyme Whey, faster recovery — becomes the physical proof of the mental quality. The reason you started is your fastest recovery mechanism.</div>
-    </div>
-    <div class="campaign-summary">MuscleBlaze found the disciplined as their tribe and named them Ziddi, proved no excuse is valid, and showed that the reason you started is the same reason you never stop.</div>
-  `
-},
-
-'muscleblaze-sanak': {
-  brand: 'MuscleBlaze',
-  tag: 'Voiceover Concept',
-  title: 'Sanak',
-  brief: 'For everyone who once burned for something and then slowly stopped.',
-  body: `
-    <div class="modal-section-label">The Idea</div>
-    <p class="modal-p">For everyone who once burned for something and then slowly stopped. The first para is a mirror. It shows you who you were when the fire was lit. The rest is a question you have been avoiding. Somewhere between sanki and mediocre, something happened. You faced it like a warrior and then quietly walked away. This voiceover does not let you do that. It asks you to name what you have accepted, face what you have been running from, and find the road back. The bar is sanak. Everything below it is a choice you are making right now.</p>
-    <div class="modal-section-label">The Voiceover</div>
-    <div class="modal-hindi-section">
-      <div class="hindi-num">I.</div>
-      <div class="modal-hindi">सनकी, सरफ़िरे, जुनूनी — कई नाम हैं इनके,</div>
-      <div class="modal-hindi">क्योंकि कमज़ोर कहलाना इन्हें मंज़ूर नहीं।</div>
-      <div class="modal-hindi">मंज़ूर भी कैसे हो</div>
-      <div class="modal-hindi">वो उम्र से बड़ा हौसला जो ठहरा</div>
-      <div class="modal-hindi">जो देता है सनक इन्हें रोज़ खुद से भिड़ जाने की,</div>
-      <div class="modal-hindi">खुद को तपाने की,</div>
-      <div class="modal-hindi">हर बाज़ी खुद को बेहतर बनाने की।</div>
-    </div>
-    <div class="modal-hindi-section">
-      <div class="hindi-num">II.</div>
-      <div class="modal-hindi">कैसे हो महसूस और कैसे ही आए नज़र</div>
-      <div class="modal-hindi">बिना परखे, बिना झांके खुद के भीतर</div>
-      <div class="modal-hindi">वो शून्य का सन्नाटा, वो एकांत में पनपती सनक</div>
-      <div class="modal-hindi">जो कह रही है तुमसे —</div>
-      <div class="modal-hindi">वो ओढ़ अनगिनत घावों की ढालों को</div>
-      <div class="modal-hindi">और देख उन ललकारों भरी नज़रों से उन खौफ़ खाती चुनौतियों को</div>
-      <div class="modal-hindi">और चबा डालो उन लोहे की खुराकों को।</div>
-    </div>
-    <div class="modal-hindi-section">
-      <div class="hindi-num">III.</div>
-      <div class="modal-hindi">इन मुश्किलों की आहट और सिसकियों की गर्माहट से</div>
-      <div class="modal-hindi">पूछने लगी हैं अब भीतर की उफनती लहरें</div>
-      <div class="modal-hindi">कब लगेगी वो खुद से होड़</div>
-      <div class="modal-hindi">जो देगी हर बंदिश को तोड़</div>
-      <div class="modal-hindi">तो उठ, बना रास्ता — अब खुद से नाता जोड़।</div>
-    </div>
-    <div class="modal-hindi-section">
-      <div class="hindi-num">IV.</div>
-      <div class="modal-hindi">सूख चुका ये औसत दर्जे का जीवन,</div>
-      <div class="modal-hindi">लगा रहा बस एक गुहार — बरस अब मेरे अपने भीतर,</div>
-      <div class="modal-hindi">सुलगा दे अब एक ऐसी आग</div>
-      <div class="modal-hindi">कि टूट सके ये ठहरा सा दौर।</div>
-      <div class="modal-hindi">कर दे राख इन आधे-अधूरे ख़्वाबों के निशान,</div>
-      <div class="modal-hindi">या तो बनाऊँ मैं खुद की पहचान</div>
-      <div class="modal-hindi">या मिट जाऊँ लड़ते-लड़ते इस सनक के नाम।</div>
-    </div>
-    <div class="modal-tagline">भाग मत. Accept kar. Train kar.</div>
-    <div class="modal-brand-stamp">MUSCLEBLAZE</div>
-  `
-},
-
-'colgate-acchi': {
-  brand: 'Colgate',
-  tag: 'TVC Concept',
-  title: 'Acchi Aadate',
-  brief: 'A gentle reminder to brush at night.',
-  body: `
-    <div class="modal-section-label">Scene 1</div>
-    <p class="modal-p">Bus stop. A girl around 14 years of age leaves for hostel for the first time, from a village or small town. Not talking much, all lost in emotions and nervousness. Her mother enters the scene hastily, hands her a box of food, and slips something into the bag. Zip closes. Mother says:</p>
-    <div class="modal-dialogue">"Hostel jaakar achi aadate mat bhul jaana."</div>
-    <p class="modal-p">She boards the bus.</p>
-    <div class="modal-section-label">Scene 2</div>
-    <p class="modal-p">Hostel setting. All alien and chaotic. Everybody settling down. She settles in the room. Sees two beds and occupies the empty one. No roommate there. Slides the luggage under the bed except for the backpack. Puts it on the bed. Tired. No energy. Missing home. She is all set to sleep when the bag under her head falls and the half-zipped chain lets the Colgate roll on the floor that her mother had slipped in.</p>
-    <p class="modal-p">She recalls her mother's line:</p>
-    <div class="modal-dialogue">"Hostel jaakar achi aadate mat bhul jaana."</div>
-    <p class="modal-p">She picks the paste and heads towards the washroom.</p>
-    <div class="modal-section-label">Scene 3</div>
-    <p class="modal-p">Bathroom. She finds her roommate standing in front of the mirror and brushing with the same Colgate tube she has in her hand. Her clothes and attire show she comes from a city background. They both see each other in the mirror and smile, exhausted yet relieved to find each other, connecting over a similar habit of brushing at night.</p>
-    <p class="modal-p">Two girls. Two mothers. The same quiet act of love, packed into a bag without making a show of it.</p>
-    <div class="modal-tagline">Jagah nayee. Aadat wahi.</div>
-    <div class="modal-brand-stamp">COLGATE</div>
-  `
-},
-
-'zepto': {
-  brand: 'Zepto',
-  tag: 'TVC Concept',
-  title: 'Chugli Se Bhi Tez',
-  brief: 'Faster than the drama. Faster than the consequences.',
-  body: `
-    <p class="modal-p">Drawing room. Afternoon.</p>
-    <p class="modal-p">Mother on the sofa, adding groceries to the Zepto cart on her phone. Sister watching a movie on TV.</p>
-    <p class="modal-p">Brother walks in, snatches the remote, switches to a football match. His team is about to score. He leans forward, excited. Sister is agitated. He ignores her.</p>
-    <p class="modal-p">Father walks in from the bedroom.</p>
-    <div class="modal-dialogue">"Mera black bag nahi mil raha. Mujhe packing karni hai, shaam ko jaana hai."</div>
-    <p class="modal-p">Son freezes. He looks at his mother, jaw clenched, eyes wide. Mother realises it immediately and frowns.</p>
-    <p class="modal-p">Sister looks at both of them. Realises.</p>
-    <div class="modal-dialogue">"Tu trip pe bag bhool gaya na?"</div>
-    <p class="modal-p">She jumps up from the sofa.</p>
-    <p class="modal-commentary">Commentator: Opposition has taken the ball. A roar from the crowd.</p>
-    <p class="modal-p">Brother grabs sister to stop her. They wrestle on the sofa and slide down onto the floor, crawling toward the father's room.</p>
-    <p class="modal-p">Mother quietly switches to the Zepto app. Finds the bag. Types in the instructions: remove all tags.</p>
-    <p class="modal-commentary">Commentator: Strong defence holding the line.</p>
-    <p class="modal-p">Siblings are almost at the father's door.</p>
-    <p class="modal-commentary">Commentator: Striker at the final defence, all set for the shot.</p>
-    <p class="modal-p">He takes the shot.</p>
-    <p class="modal-p">Doorbell rings.</p>
-    <p class="modal-p">Mother walks to the door, bag in hand, just as father steps out of his room.</p>
-    <p class="modal-commentary">Commentator: A close call, a missed opportunity.</p>
-    <p class="modal-p">Mother hands the bag to father.</p>
-    <div class="modal-dialogue">"Kaun tha darwaze pe?"</div>
-    <div class="modal-dialogue">"Iska dost tha."</div>
-    <p class="modal-commentary">Commentator: And that is a penalty.</p>
-    <p class="modal-p">Father turns to son, still on the floor.</p>
-    <div class="modal-dialogue">"Saara din dosti nibhao aur match dekho. Bahut badhiya hai."</div>
-    <p class="modal-p">Father takes the bag. Walks away.</p>
-    <p class="modal-p">Sister, still lying on the floor, laughs.</p>
-    <div class="modal-tagline">Chugli se bhi tez.</div>
-    <div class="modal-brand-stamp">ZEPTO</div>
-  `
-},
-
-'upilite': {
-  brand: 'UPI Lite',
-  tag: 'TVC Concept',
-  title: 'Lite Karo. Enlite Raho.',
-  brief: 'The weight of every small transaction. And the relief of letting it go.',
-  body: `
-    <p class="modal-p">Setting: Outside a meditation centre. Sign reads: LITE KARO | ENLITE RAHO.</p>
-    <div class="modal-section-label">Scene 1</div>
-    <p class="modal-p">A person sits meditating in an ashram, trying hard to concentrate. Bank statement sounds hit one after another. Rs. 1 lakh. Rs. 18. Rs. 340. Rs. 6. With each transaction, his face tightens. Wrinkles form. Hair turns grey. He is slowly turning into an old man. His bank statement begins appearing on his forehead. With every new transaction, his head grows wider and flatter, literally becoming a bank statement itself.</p>
-    <div class="modal-section-label">Scene 2</div>
-    <p class="modal-p">Cut to the person sitting next to him. Same frustration, same state. Then: a sound. A notification. UPI Lite downloaded. Instantly he lifts off the ground cross-legged, floating. His face clears. Wrinkles fade. The bank statement slides off his face and settles onto the mat below him. It is clean. Salary, rent, UPI Lite top-up. That is all. He looks peaceful. He is smiling.</p>
-    <div class="modal-section-label">Scene 3</div>
-    <p class="modal-p">Every phone in the ashram rings at once. Download complete. UPI Lite. One by one, every person in the ashram begins to float above the mat, cross-legged. Mats below them, statements clean, faces light.</p>
-    <div class="modal-section-label">Scene 4</div>
-    <p class="modal-p">Our first person. Still on the ground, still frowning, head still a bank statement. His phone buzzes. He looks down. Download complete. UPI Lite. He looks up. Everyone is floating. He taps. He rises.</p>
-    <div class="modal-tagline">Lite Karo. Enlite Raho.</div>
-    <div class="modal-brand-stamp">UPI LITE</div>
-  `
-},
-
-'tictac': {
-  brand: 'Tic Tac',
-  tag: 'TVC Concept',
-  title: 'Musical Chair',
-  brief: 'A bored uncle on the metro. A voiceover that won\'t let him scroll.',
-  body: `
-    <div class="modal-section-label">The Scene</div>
-    <p class="modal-p">Metro. An uncle, big moustache, sitting. Bored. Sees others watching reels. Pulls out his smartphone to do the same.</p>
-    <div class="modal-section-label">Voiceover</div>
-    <div class="modal-dialogue">Bore ho rahe ho uncle? Mann nahi lag raha? Magar ye paap nahi karne dengey hum aapko.</div>
-    <div class="modal-dialogue">Simple hai uncle.<br>Tic Tac ko kholo.<br>2 goli nikaalo.<br>1 jeeb k upar, ek jeeb k neeche.<br>Aur shuru zubaan pe musical chair ka khel.<br>Neeche waali ko upar aur upar waali ko neeche.<br>Kabhi clockwise toh kabhi anti clockwise.</div>
-    <p class="modal-p">Slow motion shot of him. Eyes closed. Savouring the Tic Tac. Lost in it.</p>
-    <p class="modal-p">He finishes the round.</p>
-    <div class="modal-dialogue">3 goli left in the box. Come on uncle, you can do it!</div>
-    <div class="modal-brand-stamp">TIC TAC</div>
-  `
-}
-
-};
-
-function openModal(id) {
-  const d = content[id];
-  document.getElementById('m-brand').textContent = d.brand;
-  document.getElementById('m-tag').textContent = d.tag;
-  document.getElementById('m-title').textContent = d.title;
-  document.getElementById('m-brief').textContent = d.brief;
-  document.getElementById('m-body').innerHTML = d.body;
-  document.getElementById('modal-overlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-  window.scrollTo(0,0);
-}
-
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function closeModalOnOverlay(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModal();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
